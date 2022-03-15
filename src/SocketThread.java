@@ -23,45 +23,15 @@ public class SocketThread extends Thread{
 
             /* Sender innledning til klienten */
             skriveren.println("Hei, du har kontakt med tjenersiden!");
-            skriveren.println("Skriv inn et regnestykke på formen: (operand operator operand)");
 
-            /* Mottar data fra klienten */
-            String regnestykke = leseren.readLine();
-            Integer result = null;
-
-            while (regnestykke != null) {  // forbindelsen på klientsiden er lukket
-                System.out.println( "Tråd " + this.getId() + " sender regnestykket: " + regnestykke);
-
-                StringTokenizer st = new StringTokenizer(regnestykke);
-
-                while (st.hasMoreTokens()){
-                    int oprnd1 = Integer.parseInt(st.nextToken());
-                    String operation = st.nextToken();
-                    int oprnd2 = Integer.parseInt(st.nextToken());
-
-                    //Tjeneren regner ut regnestykket motatt fra Klient avhengig av operator type
-                    if (operation.equals("+")) {
-                        result = oprnd1 + oprnd2;
-                    }
-                    else if (operation.equals("-")) {
-                        result = oprnd1 - oprnd2;
-                    }
-                    else if (operation.equals("*")) {
-                        result = oprnd1 * oprnd2;
-                    }
-                    else if(operation.equals(("/"))) {
-                        result = oprnd1 / oprnd2;
-                    }
-                    else {
-                        result = null;
-                    }
-                    //Skriver tilbake resultat av regnestykket til klient
-                    System.out.println("Sender resultatet tilbake til klient...");
-                    skriveren.println(result);
-                    //Fortsetter å ta imot regnestykker fra Klient
-                    regnestykke = leseren.readLine();
-                }
+            String melding = leseren.readLine();
+            while (melding!= null) {
+                System.out.println("En klient skrev: " + melding);
+                skriveren.println("Tjener svarer: " + melding);
+                melding = leseren.readLine();
             }
+
+
             /* Lukker forbindelsen */
             leseren.close();
             skriveren.close();

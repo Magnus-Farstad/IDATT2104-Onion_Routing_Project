@@ -18,8 +18,7 @@ public class Client {
         PrintWriter skriveren = new PrintWriter(forbindelse.getOutputStream(), true);
 
         String innledning1 = leseren.readLine();
-        String innledning2 = leseren.readLine();
-        System.out.println(innledning1 + "\n" + innledning2);
+        System.out.println(innledning1);
 
         String enLinje = leserFraKommandovindu.nextLine();
         while (!enLinje.equals("")) {
