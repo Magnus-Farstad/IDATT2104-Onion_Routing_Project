@@ -33,13 +33,13 @@ public class SocketThread extends Thread{
             /* Sender innledning til klienten */
             skriveren.println("Hei, du har kontakt med tjenersiden!");
 
-            String melding = leseren.readLine();
-            while (melding != null) {
-                String decryptedMessage = keyPairGenerator.decrypt(melding);
-                System.out.println("En klient skrev: " + melding);
+            String encryptedMessage = leseren.readLine();
+            while (encryptedMessage != null) {
+                String decryptedMessage = keyPairGenerator.decrypt(encryptedMessage);
+                System.out.println("En klient skrev: " + encryptedMessage);
                 System.out.println("Dekryptert: " + decryptedMessage);
                 skriveren.println("Tjener svarer: " + decryptedMessage);
-                melding = leseren.readLine();
+                encryptedMessage = leseren.readLine();
             }
 
 
