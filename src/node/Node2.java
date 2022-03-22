@@ -19,7 +19,7 @@ public class Node2 {
     public static void main(String[] args) throws IOException, NoSuchPaddingException, IllegalBlockSizeException, NoSuchAlgorithmException, BadPaddingException, InvalidKeyException {
         final int PORTNR = 1251;
 
-        EncryptionManager encryptionManager = new EncryptionManager("MIICdwIBADANBgkqhkiG9w0BAQEFAASCAmEwggJdAgEAAoGBAJs6hMk1chReRa76VAVx42YDGAv+bGwLlxAZybLwA9pFuU2oj1T9pdDWQen4m/Yo0oOFQAKsd1FWnILPtdIU3Is++k4DYMCSEQK+FA4a1wZ5ghx1QiUcu/e08gl9nDtYyGZixZpGb8hM5PToyNTL1AqKDEPOvEEX+Lia9Hp9/7hVAgMBAAECgYAEmiSLrpj2P6FDQcqx6qF6Sccxu9ZNEb7lzE3tjy4eD4kh40h0lZyP53pGzIcbMjSjj5TJP4G+GJpFSpEybEnpjxPIljg42pEJNvpKLxbT86ZCM0WN4qfXL5dA5sWqY+laB59Td+fATnc1Nj0n8CL3/i6PpQwg01M5qoJTPgVZAQJBANmfWXcX88s+XuFB7hFjLGi0euCvMW/dXeETWk1CYQEkMGEG5+ElrGiLFiraO6CIdZ1nOQueD7RQtM5846taKMECQQC2ml+qFhCGzez8HK1cMXEgMNzM3aLhvUmp6fNNhqDSNSYzGy1K6NiJX1CE9yOa525M4nZ1Jh1vPnrws3BOBgCVAkEAmqCUywAj45fPhrJ327bhyQvj+12//MIHgHNlyFuP3WW/UlG71MgV9rpM5+nkUC5lk4/SgqSud+qYbddjVU9cgQJAEbh5gDAT+oERdoXx7Ph/Wfhj9R2tKOsNsweZLPTbtoqh4mPIyXQ/T1WIot64/ddnxN5VUJkaUilmFOXVCD1c4QJBAIaZyp6Q8HIyL7iwClaCAfu8mSt+aB+9s4avPzexFJrvfogunGaU62F6oV78LRsiDbe+6sjG0nGqnWDvkrSDpH0=");
+        EncryptionManager encryptionManager = new EncryptionManager("MIICdQIBADANBgkqhkiG9w0BAQEFAASCAl8wggJbAgEAAoGBAIGb/lY99ffOS5BwEAv8MBb3uHY44tKhos94WSS4TiFJtLzVswsQ0DL406F3zlAapsNALgXvBLdTnDWdWedfpuMpqKKerVuynnpgQvzVZk1yAjo9K8cdfGbwag9A9MrlJXNtXSnisPF/pxZX62bq8eRigCs006FoRXXY4cxAmO8RAgMBAAECgYAAuBn0FOm/vvmmisoXpAXad9yuKFcClC6ncjrGk5Cs3pvTk1BWpTKxFbYuLES7st6FpV4+6i7IJxRuFNFty5cqLzcjA6nW7P6UmKekov+cgnyJl4znhSRMAVfPpQwfgKgB1QYw5oOxYeEY4wI+S2lo5vQnGEZ6U6c8pprjpc+iAQJBAIcZWhEE4kSPntU59Ckl7hjTjYvMsp0K4Bi11hanxpVuRiQ/NsuBk1RD3kPcEVlQnC53uw9Q9uBSUtxZanhUSCUCQQD1mPpLQ9XmFe4AXuia7MAs7NPMir4RuWxYFtse8b/sOH8/X2kfNx7ay0F5ytUr8zyu8DY+xXE5BmDr9eZoxlF9AkA4RLben8oeBDODW7/143ZnoLUzpO4/umfb4uBoTzjGxEcykaGg4TcbwaixWtde+9QRBo1Cs9YfWCpq3FMcCv6BAkBJUL2HMlzsLqe53Js7hGlp/9jKOrC6wcuiEFChUDGm5sa1uFm9Q8smLX8CSJaSZC49WuAWpQJDr6/HQMTjijBRAkBPgAgxln9QtBbqybFsWda74wlJ4kggyWA2LDLsnB9QcfdidZHRnek4IpSISmMU2XWtcGVQlDKCfUP+P+IiCYAB");
         encryptionManager.initFromStrings();
 
         ServerSocket tjener = new ServerSocket(PORTNR);
@@ -35,6 +35,7 @@ public class Node2 {
         String encryptedMessage = leseren.readLine();
         String[] nextPorts = encryptedMessage.split(" ");
         String decryptedMessage = encryptionManager.decrypt(nextPorts[2]);
+        System.out.println("Kryptert melding fra node2: " + encryptedMessage + "Portnummer til neste node: " + decryptedMessage);
 
         Socket forbindelse2 = new Socket("localhost", Integer.parseInt(decryptedMessage));
         InputStreamReader leseforbindelse2 = new InputStreamReader(forbindelse2.getInputStream());
@@ -42,8 +43,8 @@ public class Node2 {
         PrintWriter skriveren2 = new PrintWriter(forbindelse2.getOutputStream(), true);
 
         while (encryptedMessage != null) {
-            System.out.println("Sender kryptert melding videre til end node");
-            skriveren2.println(nextPorts[0]);
+            System.out.println("Sender kryptert melding videre til node 3");
+            skriveren2.println(encryptedMessage);
             String respons = leseren2.readLine();  // mottar respons fra tjeneren
             skriveren.println(respons);
         }

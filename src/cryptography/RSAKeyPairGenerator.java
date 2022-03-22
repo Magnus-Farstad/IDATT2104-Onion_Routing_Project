@@ -27,13 +27,13 @@ public class RSAKeyPairGenerator {
     // For andre ledd i kommunikasjon fra andre til tredje node
 
 
-//    public RSAKeyPairGenerator() throws NoSuchAlgorithmException {
-//        KeyPairGenerator keyGen = KeyPairGenerator.getInstance("RSA");
-//        keyGen.initialize(1024);
-//        KeyPair pair = keyGen.generateKeyPair();
-//        this.privateKey = pair.getPrivate();
-//        this.publicKey = pair.getPublic();
-//    }
+   public RSAKeyPairGenerator() throws NoSuchAlgorithmException {
+        KeyPairGenerator keyGen = KeyPairGenerator.getInstance("RSA");
+        keyGen.initialize(1024);
+        KeyPair pair = keyGen.generateKeyPair();
+        this.privateKey = pair.getPrivate();
+        this.publicKey = pair.getPublic();
+   }
 
     // Ikke kjør denne!!
     public void initKeys() throws NoSuchAlgorithmException {
@@ -44,7 +44,7 @@ public class RSAKeyPairGenerator {
         this.publicKey = pair.getPublic();
     }
 
-    public void initFromStrings(){
+    public void initFromStrings(String PUBLIC_KEY, String PRIVATE_KEY ){
         try{
             X509EncodedKeySpec keySpecPublic = new X509EncodedKeySpec(decode(PUBLIC_KEY));
             PKCS8EncodedKeySpec keySpecPrivate = new PKCS8EncodedKeySpec(decode(PRIVATE_KEY));
@@ -103,14 +103,10 @@ public class RSAKeyPairGenerator {
 
     public static void main(String[] args) throws NoSuchAlgorithmException, IOException, IllegalBlockSizeException, NoSuchPaddingException, BadPaddingException, InvalidKeyException {
         RSAKeyPairGenerator keyPairGenerator = new RSAKeyPairGenerator();
-        keyPairGenerator.initFromStrings();
-        String message = "Hei på deg!";
-        String encryptedMessage = keyPairGenerator.encrypt(message);
 
-        System.out.println("Encrypted message: " + encryptedMessage);
-        System.out.println("Decrypted message: " + keyPairGenerator.decrypt(encryptedMessage));
-
+        keyPairGenerator.initKeys();
         keyPairGenerator.printKeys();
+
 //        keyPairGenerator.writeToFile("RSA/publicKey", keyPairGenerator.getPublicKey().getEncoded());
 //        keyPairGenerator.writeToFile("RSA/privateKey", keyPairGenerator.getPrivateKey().getEncoded());
 //        System.out.println(Base64.getEncoder().encodeToString(keyPairGenerator.getPublicKey().getEncoded()));

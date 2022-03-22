@@ -36,6 +36,7 @@ public class Node1 {
         String encryptedMessage = leseren.readLine();
         String[] nextPorts = encryptedMessage.split(" ");
         String decryptedMessage = encryptionManager.decrypt(nextPorts[1]);
+        System.out.println("Kryptert melding fra node1: " + encryptedMessage + "Portnummer til neste node: " + decryptedMessage);
 
         Socket forbindelse2 = new Socket("localhost", Integer.parseInt(decryptedMessage));
         InputStreamReader leseforbindelse2 = new InputStreamReader(forbindelse2.getInputStream());

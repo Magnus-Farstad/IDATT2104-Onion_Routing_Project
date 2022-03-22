@@ -3,7 +3,7 @@ import java.net.*;
 
 public class ResourceServer {
     public static void main(String[] args) throws IOException {
-        final int PORTNR = 1252;
+        final int PORTNR = 1253;
 
         ServerSocket tjener = new ServerSocket(PORTNR);
         System.out.println("Logg for tjenersiden. Nå venter vi...");
