@@ -22,7 +22,9 @@ public class RSAUtil1 {
             KeyFactory keyFactory = KeyFactory.getInstance("RSA");
 
             privateKey = keyFactory.generatePrivate(keySpecPrivate);
-        }catch (Exception ignored){}
+        }catch (Exception exception){
+            System.out.println(exception.getMessage());
+        }
     }
 
     private static String encode(byte[] data) {

@@ -31,6 +31,7 @@ public class SocketThread extends Thread {
 
             /* Sender innledning til klienten */
             skriveren.println("Hei, du har kontakt med tjenersiden!");
+            System.out.println(leseren.readLine());
 
             String encryptedMessage = leseren.readLine();
             while (encryptedMessage != null) {

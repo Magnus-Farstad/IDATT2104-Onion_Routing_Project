@@ -38,13 +38,11 @@ public class Client {
 
         /* Leser tekst fra kommandovinduet (brukeren) */
         String enLinje = leserFraKommandovindu.nextLine();
-        while (!enLinje.equals("")) {
-            String encryptedMessage = keyPairGenerator.encrypt(enLinje);
-            skriveren.println(encryptedMessage);
-            String respons = leseren.readLine();  // mottar respons fra tjeneren
-            System.out.println("Fra tjenerprogrammet: " + respons);
-            enLinje = leserFraKommandovindu.nextLine();
-        }
+        String encryptedMessage = keyPairGenerator.encrypt(enLinje);
+        skriveren.println(encryptedMessage);
+        System.out.println(leseren.readLine());
+        System.out.println(leseren.readLine());
+
 
         /* Lukker forbindelsen */
         leseren.close();
