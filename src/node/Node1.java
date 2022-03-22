@@ -1,14 +1,12 @@
 package node;
 
 import cryptography.RSAUtil1;
+import model.Payload;
 
 import javax.crypto.BadPaddingException;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
+import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.security.InvalidKeyException;
@@ -33,8 +31,21 @@ public class Node1 {
         BufferedReader leseren = new BufferedReader(leseforbindelse);
         PrintWriter skriveren = new PrintWriter(connectionWithClient.getOutputStream(), true);
 
+        /* Lesing og skriving til klient via objek */
+        InputStream inputStream = connectionWithClient.getInputStream();
+        ObjectInputStream objectInputStream = new ObjectInputStream(inputStream);
+
         /* Sender innledning til klienten */
         skriveren.println("Hei, du har kontakt med node 1!");
+
+        Payload payload;
+        try {
+            payload = (Payload) objectInputStream.readObject();
+            System.out.println(payload.getData());
+        } catch (ClassNotFoundException exception) {
+            System.out.println(exception.getMessage());
+            System.out.println("Kunne ikke lese av fra objekt");
+        }
 
         String nextNodeEncrypted = leseren.readLine();
         System.out.println(nextNodeEncrypted);

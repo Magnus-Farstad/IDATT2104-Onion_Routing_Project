@@ -1,4 +1,5 @@
 import cryptography.RSAKeyPairGenerator;
+import model.Payload;
 
 import javax.crypto.BadPaddingException;
 import javax.crypto.IllegalBlockSizeException;
@@ -24,17 +25,28 @@ public class Client {
         String tjenermaskin = leserFraKommandovindu.nextLine();
 
         /* Setter opp forbindelsen til tjenerprogrammet */
-        Socket forbindelse = new Socket(tjenermaskin, PORTNR);
+        Socket socket = new Socket(tjenermaskin, PORTNR);
         System.out.println("Nå er forbindelsen opprettet.");
 
-        /* �pner en forbindelse for kommunikasjon med tjenerprogrammet */
-        InputStreamReader leseforbindelse = new InputStreamReader(forbindelse.getInputStream());
+        /* �pner en forbindelse for kommunikasjon med tjenerprogrammet via String */
+        InputStreamReader leseforbindelse = new InputStreamReader(socket.getInputStream());
         BufferedReader leseren = new BufferedReader(leseforbindelse);
-        PrintWriter skriveren = new PrintWriter(forbindelse.getOutputStream(), true);
+        PrintWriter skriveren = new PrintWriter(socket.getOutputStream(), true);
+
+        /* Åpner en forbindelse for kommunikasjon med tjenerprogrammet via objekter */
+        OutputStream outputStream = socket.getOutputStream();
+        ObjectOutputStream objectOutputStream = new ObjectOutputStream(outputStream);
+        Payload payload = new Payload("Dette er fra objektet");
 
         /* Leser innledning fra tjeneren og skriver den til kommandovinduet */
         String innledning1 = leseren.readLine();
         System.out.println(innledning1);
+
+        System.out.println("Sending message to server");
+        objectOutputStream.writeObject(payload);
+
+
+
 
         /* Leser tekst fra kommandovinduet (brukeren) */
         String enLinje = leserFraKommandovindu.nextLine();
@@ -47,6 +59,6 @@ public class Client {
         /* Lukker forbindelsen */
         leseren.close();
         skriveren.close();
-        forbindelse.close();
+        socket.close();
     }
 }
