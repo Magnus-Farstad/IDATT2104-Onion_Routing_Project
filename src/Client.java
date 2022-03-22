@@ -14,7 +14,10 @@ public class Client {
     private final String PUBLIC_KEY = "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCbOoTJNXIUXkWu+lQFceNmAxgL/mxsC5cQGcmy8APaRblNqI9U/aXQ1kHp+Jv2KNKDhUACrHdRVpyCz7XSFNyLPvpOA2DAkhECvhQOGtcGeYIcdUIlHLv3tPIJfZw7WMhmYsWaRm/ITOT06MjUy9QKigxDzrxBF/i4mvR6ff+4VQIDAQAB";
 
     public static void main(String[] args) throws IOException, IllegalBlockSizeException, NoSuchPaddingException, BadPaddingException, NoSuchAlgorithmException, InvalidKeyException {
-        final int PORTNR = 1250;
+        final int PORTNR1 = 1250;
+        final int PORTNR2 = 1251;
+        final int PORTNR3 = 1252;
+
         final RSAKeyPairGenerator keyPairGenerator = new RSAKeyPairGenerator();
         keyPairGenerator.initFromStrings();
 
@@ -24,7 +27,7 @@ public class Client {
         String tjenermaskin = leserFraKommandovindu.nextLine();
 
         /* Setter opp forbindelsen til tjenerprogrammet */
-        Socket forbindelse = new Socket(tjenermaskin, PORTNR);
+        Socket forbindelse = new Socket(tjenermaskin, PORTNR1);
         System.out.println("Nå er forbindelsen opprettet.");
 
         /* �pner en forbindelse for kommunikasjon med tjenerprogrammet */
@@ -40,9 +43,11 @@ public class Client {
         String enLinje = leserFraKommandovindu.nextLine();
         while (!enLinje.equals("")) {
             String encryptedMessage = keyPairGenerator.encrypt(enLinje);
-            skriveren.println(encryptedMessage);
+            String encryptedPort1 = keyPairGenerator.encrypt("1251");
+            String encryptedPort2 = keyPairGenerator.encrypt("1252");
+            skriveren.println(encryptedMessage + " " + encryptedPort1 + " " + encryptedPort2);
             String respons = leseren.readLine();  // mottar respons fra tjeneren
-            System.out.println("Fra tjenerprogrammet: " + respons);
+            System.out.println(respons);
             enLinje = leserFraKommandovindu.nextLine();
         }
 
