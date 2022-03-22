@@ -1,4 +1,4 @@
-package cryptography;
+package cryptography.keygen;
 
 import model.Payload;
 
@@ -77,6 +77,30 @@ public class RSAKeyPairGenerator {
 //            return null;
 //        }
 //    }
+
+    public byte [] serializeObject(Payload payload) {
+        try (ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+             ObjectOutputStream objectOutputStream = new ObjectOutputStream(byteArrayOutputStream)) {
+
+            objectOutputStream.writeObject(payload);
+            System.out.println();
+            return byteArrayOutputStream.toByteArray();
+        } catch (Exception exception) {
+            System.out.println("Kryptering av objekt feilet");
+            exception.printStackTrace();
+        }
+        throw new RuntimeException("Objekt til bytes feilet");
+    }
+
+    public Payload deserializeObject(byte[] bytes) {
+        InputStream inputStream = new ByteArrayInputStream(bytes);
+        try (ObjectInputStream objectInputStream = new ObjectInputStream(inputStream)) {
+            return (Payload) objectInputStream.readObject();
+        } catch (Exception exception) {
+            System.out.println(exception.getMessage());
+        }
+        throw new RuntimeException("Bytes til objekt feilet");
+    }
 
     private String encode(byte[] data) {
         return Base64.getEncoder().encodeToString(data);

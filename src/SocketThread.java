@@ -1,4 +1,4 @@
-import cryptography.RSAKeyPairGenerator;
+import cryptography.keygen.RSAKeyPairGenerator;
 
 import javax.crypto.BadPaddingException;
 import javax.crypto.IllegalBlockSizeException;
@@ -7,8 +7,6 @@ import java.io.*;
 import java.net.Socket;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
-import java.util.Arrays;
-import java.util.StringTokenizer;
 
 public class SocketThread extends Thread {
 

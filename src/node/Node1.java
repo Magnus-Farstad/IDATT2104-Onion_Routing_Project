@@ -1,6 +1,6 @@
 package node;
 
-import cryptography.RSAUtil1;
+import cryptography.managers.RSAEncryptionManager;
 import model.Payload;
 
 import javax.crypto.BadPaddingException;
@@ -11,7 +11,6 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
-import java.util.Scanner;
 
 public class Node1 {
 
@@ -19,8 +18,8 @@ public class Node1 {
         final int PORTNR = 1250;
         final int PORTNR1 = 1251;
 
-        RSAUtil1 rsaUtil1 = new RSAUtil1();
-        rsaUtil1.initFromStrings();
+        RSAEncryptionManager rsaEncryptionManager = new RSAEncryptionManager();
+        rsaEncryptionManager.initFromStrings();
 
         ServerSocket tjener = new ServerSocket(PORTNR);
         System.out.println("Logg for node 1. Nå venter vi...");
@@ -41,8 +40,7 @@ public class Node1 {
         Payload payload;
         try {
             payload = (Payload) objectInputStream.readObject();
-            System.out.println("Data: " + rsaUtil1.decrypt(payload.getData()));
-            System.out.println("Nøkkel for neste node: " + rsaUtil1.decrypt(payload.getNextPayloadKey()));
+            System.out.println("Data: " + rsaEncryptionManager.decrypt(payload.getData()));
             System.out.println(payload.getData());
         } catch (ClassNotFoundException exception) {
             System.out.println(exception.getMessage());
@@ -51,7 +49,7 @@ public class Node1 {
 
         String nextNodeEncryptedString = leseren.readLine();
         System.out.println(nextNodeEncryptedString);
-        String nextNode = rsaUtil1.decrypt(nextNodeEncryptedString);
+        String nextNode = rsaEncryptionManager.decrypt(nextNodeEncryptedString);
         skriveren.println("Takk for melding!");
 
         Socket connectionNextNode = new Socket(nextNode, PORTNR1);

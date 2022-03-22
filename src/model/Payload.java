@@ -8,8 +8,8 @@ public class Payload implements Serializable {
     private String data;
     private String address;
     private int portNumber;
-    private Payload nextPayload;
-    private String nextPayloadKey;
+    private Payload lastPayload;
+    private byte[] nextPayload;
 
     public Payload(String data, String address, int portNumber) {
         this.data = data;
@@ -22,9 +22,8 @@ public class Payload implements Serializable {
         this.portNumber = portNumber;
     }
 
-    public Payload(String data, String nextPayloadKey) {
+    public Payload(String data) {
         this.data = data;
-        this.nextPayloadKey = nextPayloadKey;
     }
 
     public Payload() {
@@ -38,12 +37,7 @@ public class Payload implements Serializable {
         return data;
     }
 
-
-    public String getNextPayloadKey() {
-        return nextPayloadKey;
-    }
-
-    public void setNextPayload(Payload nextPayload) {
+    public void setNextPayload(byte[] nextPayload) {
         this.nextPayload = nextPayload;
     }
 }
