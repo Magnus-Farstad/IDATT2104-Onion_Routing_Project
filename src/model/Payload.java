@@ -1,38 +1,49 @@
 package model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Payload {
+public class Payload implements Serializable {
 
-    private ArrayList<String> data;
-    private ArrayList<String> addresses;
-    private ArrayList<String> portNumbers;
+    private String data;
+    private String address;
+    private int portNumber;
     private Payload nextPayload;
+    private String nextPayloadKey;
 
-    public Payload(ArrayList<String> data, ArrayList<String> addresses, ArrayList<String> portNumbers) {
+    public Payload(String data, String address, int portNumber) {
         this.data = data;
-        this.addresses = addresses;
-        this.portNumbers = portNumbers;
+        this.address = address;
+        this.portNumber = portNumber;
     }
 
-    public Payload(ArrayList<String> addresses, ArrayList<String> portNumbers) {
-        this.addresses = addresses;
-        this.portNumbers = portNumbers;
+    public Payload(String address, int portNumber) {
+        this.address = address;
+        this.portNumber = portNumber;
     }
 
-    public Payload(String data) {
-        this.data.add(data);
+    public Payload(String data, String nextPayloadKey) {
+        this.data = data;
+        this.nextPayloadKey = nextPayloadKey;
     }
 
-    public ArrayList<String> getData() {
+    public Payload() {
+    }
+
+    public void setData(String data) {
+        this.data = data;
+    }
+
+    public String getData() {
         return data;
     }
 
-    public ArrayList<String> getAddresses() {
-        return addresses;
+
+    public String getNextPayloadKey() {
+        return nextPayloadKey;
     }
 
-    public ArrayList<String> getPortNumbers() {
-        return portNumbers;
+    public void setNextPayload(Payload nextPayload) {
+        this.nextPayload = nextPayload;
     }
 }

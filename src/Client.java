@@ -36,7 +36,22 @@ public class Client {
         /* Åpner en forbindelse for kommunikasjon med tjenerprogrammet via objekter */
         OutputStream outputStream = socket.getOutputStream();
         ObjectOutputStream objectOutputStream = new ObjectOutputStream(outputStream);
-        Payload payload = new Payload("Dette er fra objektet");
+        String message = "Hei dette er melding fra objekt nummer 1";
+        String keyForNextNode = "Nøkkel 1";
+
+        String encryptedMessage = keyPairGenerator.encrypt(message);
+        String encryptedKeyForNextNode = keyPairGenerator.encrypt(keyForNextNode);
+
+        Payload payload = new Payload(encryptedMessage, encryptedKeyForNextNode);
+
+        /* Neste payload blir satt */
+        String secondMessage = "Hei dette er melding fra objekt nummer 2";
+        String encryptedSecondMessage = keyPairGenerator.encrypt(secondMessage);
+
+        Payload payload2 = new Payload();
+
+        payload2.setData(encryptedSecondMessage);
+        payload.setNextPayload(payload2);
 
         /* Leser innledning fra tjeneren og skriver den til kommandovinduet */
         String innledning1 = leseren.readLine();
@@ -50,8 +65,8 @@ public class Client {
 
         /* Leser tekst fra kommandovinduet (brukeren) */
         String enLinje = leserFraKommandovindu.nextLine();
-        String encryptedMessage = keyPairGenerator.encrypt(enLinje);
-        skriveren.println(encryptedMessage);
+        String encryptedMessageString = keyPairGenerator.encrypt(enLinje);
+        skriveren.println(encryptedMessageString);
         System.out.println(leseren.readLine());
         System.out.println(leseren.readLine());
 
@@ -59,6 +74,9 @@ public class Client {
         /* Lukker forbindelsen */
         leseren.close();
         skriveren.close();
+        outputStream.close();
+        objectOutputStream.close();
         socket.close();
+
     }
 }

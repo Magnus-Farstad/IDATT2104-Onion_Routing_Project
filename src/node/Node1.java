@@ -41,15 +41,17 @@ public class Node1 {
         Payload payload;
         try {
             payload = (Payload) objectInputStream.readObject();
+            System.out.println("Data: " + rsaUtil1.decrypt(payload.getData()));
+            System.out.println("Nøkkel for neste node: " + rsaUtil1.decrypt(payload.getNextPayloadKey()));
             System.out.println(payload.getData());
         } catch (ClassNotFoundException exception) {
             System.out.println(exception.getMessage());
             System.out.println("Kunne ikke lese av fra objekt");
         }
 
-        String nextNodeEncrypted = leseren.readLine();
-        System.out.println(nextNodeEncrypted);
-        String nextNode = rsaUtil1.decrypt(nextNodeEncrypted);
+        String nextNodeEncryptedString = leseren.readLine();
+        System.out.println(nextNodeEncryptedString);
+        String nextNode = rsaUtil1.decrypt(nextNodeEncryptedString);
         skriveren.println("Takk for melding!");
 
         Socket connectionNextNode = new Socket(nextNode, PORTNR1);
@@ -68,6 +70,8 @@ public class Node1 {
         /* Lukker forbindelsen */
         leseren.close();
         skriveren.close();
+        inputStream.close();
+        objectInputStream.close();
         connectionWithClient.close();
     }
 }

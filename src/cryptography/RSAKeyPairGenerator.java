@@ -1,13 +1,12 @@
 package cryptography;
 
+import model.Payload;
+
 import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.UnsupportedEncodingException;
+import java.io.*;
 import java.security.*;
 import java.security.spec.PKCS8EncodedKeySpec;
 import java.security.spec.X509EncodedKeySpec;
@@ -63,6 +62,22 @@ public class RSAKeyPairGenerator {
         return encode(encryptedMessage);
     }
 
+//    public byte[] encryptObject(Payload payload) throws BadPaddingException, IllegalBlockSizeException, InvalidKeyException, NoSuchPaddingException, NoSuchAlgorithmException {
+//        Cipher cipher = Cipher.getInstance("RSA/ECB/PKCS1Padding");
+//        cipher.init(Cipher.ENCRYPT_MODE, publicKey);
+//        try (ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+//            ObjectOutputStream objectOutputStream = new ObjectOutputStream(outputStream)) {
+//
+//            objectOutputStream.writeObject(payload);
+//            System.out.println(outputStream.toByteArray().length);
+//            return cipher.doFinal(outputStream.toByteArray());
+//        } catch (Exception exception) {
+//            System.out.println("Kryptering av objekt feilet");
+//            exception.printStackTrace();
+//            return null;
+//        }
+//    }
+
     private String encode(byte[] data) {
         return Base64.getEncoder().encodeToString(data);
     }
@@ -73,6 +88,20 @@ public class RSAKeyPairGenerator {
         byte[] decryptedMessage = cipher.doFinal(decode(encryptedMessage));
         return new String(decryptedMessage, "UTF8");
     }
+
+//    public Payload decryptObject(byte[] encryptedMessage) throws InvalidKeyException, NoSuchPaddingException, NoSuchAlgorithmException, IllegalBlockSizeException, BadPaddingException, UnsupportedEncodingException {
+//        Cipher cipher = Cipher.getInstance("RSA/ECB/PKCS1Padding");
+//        cipher.init(Cipher.DECRYPT_MODE, privateKey);
+//        byte[] decryptedBytes = cipher.doFinal(encryptedMessage);
+//
+//        InputStream inputStream = new ByteArrayInputStream(decryptedBytes);
+//        try (ObjectInputStream objectInputStream = new ObjectInputStream(inputStream)) {
+//            return (Payload) objectInputStream.readObject();
+//        } catch (Exception exception) {
+//            System.out.println(exception.getMessage());
+//        }
+//        throw new RuntimeException("Decryption failed");
+//    }
 
     private byte[] decode(String data) {
         return Base64.getDecoder().decode(data);
