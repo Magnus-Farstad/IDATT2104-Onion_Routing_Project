@@ -1,13 +1,20 @@
+import cryptography.AESencryption;
 import cryptography.RSAKeyPairGenerator;
+import model.Node;
 
 import javax.crypto.BadPaddingException;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
+import javax.crypto.SecretKey;
+import javax.crypto.spec.SecretKeySpec;
 import java.io.*;
 import java.net.*;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
+import java.util.Base64;
 import java.util.Scanner;
+
+import static API.APIService.apiGETRequest;
 
 public class Client {
 
@@ -20,7 +27,7 @@ public class Client {
     private static final String PUBLIC_KEY_3 = "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDUZ/sz+OJ3dtjkNdb6FPxbF7VKuDHgCJy5PCEaeNiqkCqh3VwCJBRZ59VHi4k0xdvMVqa8WioJzd7tajNGRgaJiur8F/8cT3xLvefVmxKiIyD4ZUlWaA/9bZroGL0dUE9ze3R5zgczaU9SMJHWeYJJ/w7ckBc5xeIAsLv3slbrLwIDAQAB";
     private static final String PRIVATE_KEY_3 = "MIICdgIBADANBgkqhkiG9w0BAQEFAASCAmAwggJcAgEAAoGBANRn+zP44nd22OQ11voU/FsXtUq4MeAInLk8IRp42KqQKqHdXAIkFFnn1UeLiTTF28xWprxaKgnN3u1qM0ZGBomK6vwX/xxPfEu959WbEqIjIPhlSVZoD/1tmugYvR1QT3N7dHnOBzNpT1IwkdZ5gkn/DtyQFznF4gCwu/eyVusvAgMBAAECgYAK7CUQtMHpGS+pVSYA87t0Xbg8guWT9lH7sxVc/J+7pQwR5KEWGatKhtQL7UwLJVHRZKniuzfveUXk619+n0DJ/250WMG6Hv0VzuaHgFNCjPi7PWBuySVORGYqZuWAG9VsZCDmGEdgBAAtzay2MqwGx5PwJ6fmqG2Ko/HP1SL4JQJBAN5mhZrTo+oDkcH2aE8e2R909mMRczmBSTZhiBRgZOgwdIWcoIUQKvVrvCEMwz5ZNCCwkr6/wgYdFlh6hwpBel0CQQD0fuxup8KXF5is8XpRrxS0Wy8E7dPhWF1Y+nimwZ7GxhB+MMuJ3dnHDxQydMTiYuhag1A5Wigp+MKfaMSKKJr7AkAPqvdUnf5ZOSEmof5dPJYdQjctaYhNj88hlqNolBXnyaob05n3Zdkw6wMY7PZASTaD6wybhZTcq2Xsm80xqsU9AkEAx9FHd7Qhg4xkWctM1Z9KQ5BWICgixwOJ3uNtYZPSKM/MwOUuI7Gtf1MihY4LLp35GahCE21Mb+j/XnqoTeWbqwJAPPPFvxIZzbkJ08biNt0+Q1gqpsC9vFU75PQfSp0mXqTrd13TfVUQMRph7pXcQO3oXqAiAolw77H3/0Fjm1ioLw==";
 
-    public static void main(String[] args) throws IOException, IllegalBlockSizeException, NoSuchPaddingException, BadPaddingException, NoSuchAlgorithmException, InvalidKeyException {
+    public static void main(String[] args) throws Exception {
         final int PORTNR1 = 1251;
         final int PORTNR2 = 1252;
         final int PORTNR3 = 1253;
@@ -33,7 +40,6 @@ public class Client {
 
         final RSAKeyPairGenerator keyPairGenerator3 = new RSAKeyPairGenerator();
         keyPairGenerator3.initFromStrings(PUBLIC_KEY_3, PRIVATE_KEY_3);
-
 
 
         /* Bruker en scanner til å lese fra kommandovinduet */
@@ -50,6 +56,17 @@ public class Client {
         BufferedReader leseren = new BufferedReader(leseforbindelse);
         PrintWriter skriveren = new PrintWriter(forbindelse.getOutputStream(), true);
 
+        String response = apiGETRequest("http://localhost:8080/getNodes");
+        System.out.println(response);
+        String[] list = response.split(",");
+        String aesKeyString = list[1];
+
+        AESencryption aeSencryption = new AESencryption();
+        SecretKey aesKey = aeSencryption.convertStringToSecretKeyto(aesKeyString);
+        System.out.println("SECRETKEY: " + aesKey);
+
+
+
         /* Leser innledning fra tjeneren og skriver den til kommandovinduet */
         String innledning1 = leseren.readLine();
         System.out.println(innledning1);
@@ -57,12 +74,19 @@ public class Client {
         /* Leser tekst fra kommandovinduet (brukeren) */
         String enLinje = leserFraKommandovindu.nextLine();
         while (!enLinje.equals("")) {
+            /*
             String encryptedMessage = keyPairGenerator1.encrypt(enLinje);
-            String encryptedPort1 = keyPairGenerator1.encrypt(String.valueOf(PORTNR1));
-            String encryptedPort2 = keyPairGenerator2.encrypt(String.valueOf(PORTNR2));
-            String encryptedPort3 = keyPairGenerator3.encrypt(String.valueOf(PORTNR3));
+            encryptedMessage += PORTNR3;
+            encryptedMessage = keyPairGenerator3.encrypt(encryptedMessage);
+            encryptedMessage += PORTNR2;
+            encryptedMessage = keyPairGenerator2.encrypt(encryptedMessage);
+            encryptedMessage += PORTNR1;
+            encryptedMessage = keyPairGenerator1.encrypt(encryptedMessage);
 
-            skriveren.println(encryptedMessage + " " + encryptedPort1 + " " + encryptedPort2 + " " + encryptedPort3);
+             */
+
+            String encryptedMessage = aeSencryption.encrypt(enLinje, aesKey);
+            skriveren.println(encryptedMessage);
             String respons = leseren.readLine();  // mottar respons fra tjeneren
             System.out.println(respons);
             enLinje = leserFraKommandovindu.nextLine();

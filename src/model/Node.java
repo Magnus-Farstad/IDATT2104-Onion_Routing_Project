@@ -1,3 +1,5 @@
+package model;
+
 import javax.crypto.SecretKey;
 
 public class Node {

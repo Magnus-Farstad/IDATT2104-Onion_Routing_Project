@@ -6,6 +6,7 @@ import java.util.Base64;
 import javax.crypto.Cipher;
 import javax.crypto.KeyGenerator;
 import javax.crypto.SecretKey;
+import javax.crypto.spec.SecretKeySpec;
 
 
 public class AESencryption {
@@ -25,6 +26,16 @@ public class AESencryption {
             System.out.println("Error while encrypting: " + e);
         }
         return null;
+    }
+    public String convertSecretKeyToString(SecretKey secretKey) throws NoSuchAlgorithmException {
+        byte[] rawData = secretKey.getEncoded();
+        String encodedKey = Base64.getEncoder().encodeToString(rawData);
+        return encodedKey;
+    }
+    public SecretKey convertStringToSecretKeyto(String encodedKey) {
+        byte[] decodedKey = Base64.getDecoder().decode(encodedKey);
+        SecretKey originalKey = new SecretKeySpec(decodedKey, 0, decodedKey.length, "AES");
+        return originalKey;
     }
 
     public String decrypt(final String string, final SecretKey key) {
