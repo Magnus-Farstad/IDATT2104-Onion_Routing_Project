@@ -66,6 +66,7 @@ public class NodeMain {
         skriveren.println("Hei, du har kontakt med node 1!");
 
         String encryptedMessage = leseren.readLine();
+        System.out.println(encryptedMessage);
 
         System.out.println("SKAL DEKRYPTERE");
         String decryptedData = aesEncryption.decrypt(encryptedMessage, aesKey);
