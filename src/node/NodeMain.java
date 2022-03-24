@@ -19,7 +19,7 @@ import static API.APIService.apiPOSTNode;
 
 public class NodeMain {
 
-    private final static String PUBLIC_KEY = "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCbOoTJNXIUXkWu+lQFceNmAxgL/mxsC5cQGcmy8APaRblNqI9U/aXQ1kHp+Jv2KNKDhUACrHdRVpyCz7XSFNyLPvpOA2DAkhECvhQOGtcGeYIcdUIlHLv3tPIJfZw7WMhmYsWaRm/ITOT06MjUy9QKigxDzrxBF/i4mvR6ff+4VQIDAQAB";
+    //private final static String PUBLIC_KEY = "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCbOoTJNXIUXkWu+lQFceNmAxgL/mxsC5cQGcmy8APaRblNqI9U/aXQ1kHp+Jv2KNKDhUACrHdRVpyCz7XSFNyLPvpOA2DAkhECvhQOGtcGeYIcdUIlHLv3tPIJfZw7WMhmYsWaRm/ITOT06MjUy9QKigxDzrxBF/i4mvR6ff+4VQIDAQAB";
 
 
     public static void main(String[] args) throws Exception {
@@ -27,9 +27,9 @@ public class NodeMain {
         System.out.println("Skriv inn addressen til serveren");
 
         String serverAddress = leserFraKommandovindu.nextLine();
-        //String publickey = apiGETRequest("http://" + serverAddress + ":8080/getPublicKey");
+        String publickey = apiGETRequest("http://" + serverAddress + ":8080/getPublicKey");
 
-        EncryptionManager encryptionManager = new EncryptionManager(PUBLIC_KEY);
+        EncryptionManager encryptionManager = new EncryptionManager(publickey);
         encryptionManager.initFromStrings();
 
         AESencryption aesEncryption = new AESencryption();
@@ -81,17 +81,19 @@ public class NodeMain {
             BufferedReader leseren2 = new BufferedReader(leseforbindelse2);
             PrintWriter skriveren2 = new PrintWriter(forbindelse2.getOutputStream(), true);
 
-            while (true) {
-                System.out.println("sender krypter melding og addresse videre til node 2");
-                skriveren2.println(nextNode[0]);
+            skriveren2.println(nextNode[0]);
 
-                String messageFromNext = leseren2.readLine();
+            String messageFromNext = leseren2.readLine();
 
-                skriveren.println(messageFromNext);
-            }
-        } else {
-            String encryptedMesageBack = aesEncryption.encrypt(decryptedData, aesKey);
+            System.out.println(messageFromNext);
+            String encryptedMesageBack = aesEncryption.encrypt(messageFromNext, aesKey);
+
             skriveren.println(encryptedMesageBack);
+            System.out.println(encryptedMesageBack);
+
+        } else {
+            //String encryptedMesageBack = aesEncryption.encrypt(decryptedData, aesKey);
+            skriveren.println(decryptedData);
         }
 
 
