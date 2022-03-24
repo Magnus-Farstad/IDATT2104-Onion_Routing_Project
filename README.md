@@ -52,7 +52,7 @@ mvn spring-boot:run
 
 - Klienten vil nå vente på at noder kobler seg opp på server og deretter hente dem ut
 
-![ClientServer](/Users/simenklemppetersen/Desktop/ClientServer.jpg "ClientServer")
+![ClientServer](https://user-images.githubusercontent.com/91839835/159998190-876df2a6-5d57-4ceb-b692-ab5f29570db1.jpg)
 
 
 
