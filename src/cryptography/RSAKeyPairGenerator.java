@@ -93,12 +93,12 @@ public class RSAKeyPairGenerator {
 //        fos.close();
 //    }
 
-    public PrivateKey getPrivateKey() {
-        return privateKey;
+    public String getPrivateKey() {
+        return encode(privateKey.getEncoded());
     }
 
-    public PublicKey getPublicKey() {
-        return publicKey;
+    public String getPublicKey() {
+        return encode(publicKey.getEncoded());
     }
 
     public static void main(String[] args) throws NoSuchAlgorithmException, IOException, IllegalBlockSizeException, NoSuchPaddingException, BadPaddingException, InvalidKeyException {
