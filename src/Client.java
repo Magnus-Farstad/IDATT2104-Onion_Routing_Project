@@ -11,6 +11,8 @@ import java.io.*;
 import java.net.*;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Base64;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
@@ -25,8 +27,15 @@ public class Client {
 
     public static void main(String[] args) throws Exception {
 
+        ArrayList<String> keys = new ArrayList<>();
+        ArrayList<String> ports = new ArrayList<>();
+        ArrayList<String> addresses = new ArrayList<>();
+
+
+
         final RSAKeyPairGenerator keyPairGenerator1 = new RSAKeyPairGenerator();
         keyPairGenerator1.initFromStrings(PUBLIC_KEY_1, PRIVATE_KEY_1);
+        AESencryption aeSencryption = new AESencryption();
 
         int responseCode = apiPOSTKey("http://localhost:8080/postPublicKey", PUBLIC_KEY_1);
         System.out.println(responseCode);
@@ -38,18 +47,20 @@ public class Client {
 
         System.out.println(response);
 
-        String[] list = response.split(",");
-        String aesKeyString = list[1];
-        String address = list[2];
-        String decryptedAESKeyString = keyPairGenerator1.decrypt(aesKeyString);
+        String[] list = response.split(";");
 
-        AESencryption aeSencryption = new AESencryption();
-        SecretKey aesKey = aeSencryption.convertStringToSecretKeyto(decryptedAESKeyString);
-        System.out.println("SECRETKEY: " + aesKey);
+        for(int i = 0; i < list.length; i++){
+            String[] node =  list[i].split(",");
+
+            ports.add(node[0]);
+            keys.add(node[1]);
+            addresses.add(node[2]);
+        }
 
         /* Setter opp forbindelsen til tjenerprogrammet */
-        Socket forbindelse = new Socket(address, 1250);
-        System.out.println("Nå er forbindelsen opprettet.");
+        String[] node1 = list[0].split(",");
+        Socket forbindelse = new Socket(node1[2], Integer.parseInt(node1[0]));
+        System.out.println("Nå er forbi1250,AQNt1urgAvLf7Nht4ViXrYyqAGwydGaYSCCCnTFAaYzsCOYLu0sSajSn+w/yhpnS+OeCMhZ+1Hzu0yJ71lr2C6U5QN0kZsqCJjrk9YDSPMzP5On73ngykU2mu3V3VZawxYeccpi679yyzfWIIahR6WK0cAd4ErIcDjbVvzzr1/Q=,10.22.2.181ndelsen opprettet.");
 
         /* �pner en forbindelse for kommunikasjon med tjenerprogrammet */
         InputStreamReader leseforbindelse = new InputStreamReader(forbindelse.getInputStream());
@@ -65,19 +76,17 @@ public class Client {
 
         /* Leser tekst fra kommandovinduet (brukeren) */
         String enLinje = leserFraKommandovindu.nextLine();
+        String encryptedMessage = enLinje;
         while (!enLinje.equals("")) {
-            /*
-            String encryptedMessage = keyPairGenerator1.encrypt(enLinje);
-            encryptedMessage += PORTNR3;
-            encryptedMessage = keyPairGenerator3.encrypt(encryptedMessage);
-            encryptedMessage += PORTNR2;
-            encryptedMessage = keyPairGenerator2.encrypt(encryptedMessage);
-            encryptedMessage += PORTNR1;
-            encryptedMessage = keyPairGenerator1.encrypt(encryptedMessage);
+            for(int i= list.length-1; i >= 0; i--){
+                String decryptedAESKeyString = keyPairGenerator1.decrypt(keys.get(i));
+                SecretKey aesKey = aeSencryption.convertStringToSecretKeyto(decryptedAESKeyString);
 
-             */
+                encryptedMessage = aeSencryption.encrypt(encryptedMessage,aesKey);
+                encryptedMessage += "," + ports.get(i-1) + "," + addresses.get(i-1);
+                encryptedMessage = aeSencryption.encrypt(encryptedMessage,aesKey);
+            }
 
-            String encryptedMessage = aeSencryption.encrypt(enLinje, aesKey);
             skriveren.println(encryptedMessage);
             String respons = leseren.readLine();  // mottar respons fra tjeneren
             System.out.println(respons);
