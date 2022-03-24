@@ -90,7 +90,8 @@ public class NodeMain {
                 skriveren.println(messageFromNext);
             }
         } else {
-            skriveren.println(decryptedData);
+            String encryptedMesageBack = aesEncryption.encrypt(decryptedData, aesKey);
+            skriveren.println(encryptedMesageBack);
         }
 
 
