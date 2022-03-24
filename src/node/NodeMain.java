@@ -92,8 +92,9 @@ public class NodeMain {
             System.out.println(encryptedMesageBack);
 
         } else {
-            //String encryptedMesageBack = aesEncryption.encrypt(decryptedData, aesKey);
-            skriveren.println(decryptedData);
+            String encryptedMesageBack = aesEncryption.encrypt(decryptedData, aesKey);
+            System.out.println(encryptedMesageBack);
+            skriveren.println(encryptedMesageBack);
         }
 
         /* Lukker forbindelsen */
