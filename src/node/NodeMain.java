@@ -70,25 +70,31 @@ public class NodeMain {
 
         System.out.println("SKAL DEKRYPTERE");
         String decryptedData = aesEncryption.decrypt(encryptedMessage, aesKey);
-
         System.out.println(decryptedData);
 
-        String[] nextNode = decryptedData.split(",");
+        if (decryptedData.contains(",")) {
 
-        Socket forbindelse2 = new Socket(nextNode[2], Integer.parseInt(nextNode[1]));
-        InputStreamReader leseforbindelse2 = new InputStreamReader(forbindelse2.getInputStream());
-        BufferedReader leseren2 = new BufferedReader(leseforbindelse2);
-        PrintWriter skriveren2 = new PrintWriter(forbindelse2.getOutputStream(), true);
+            String[] nextNode = decryptedData.split(",");
 
-
-        String message = leseren2.readLine();
-        while (nextNode[0] != "") {
-            System.out.println("sender krypter melding og addresse videre til node 2");
-            skriveren2.println(nextNode[0]);
-            //skriveren2.println(encryptedMessage);
-            //String respons = leseren2.readLine();  // mottar respons fra tjeneren
+            Socket forbindelse2 = new Socket(nextNode[2], Integer.parseInt(nextNode[1]));
+            InputStreamReader leseforbindelse2 = new InputStreamReader(forbindelse2.getInputStream());
+            BufferedReader leseren2 = new BufferedReader(leseforbindelse2);
+            PrintWriter skriveren2 = new PrintWriter(forbindelse2.getOutputStream(), true);
+            while (nextNode[0] != "") {
+                System.out.println("sender krypter melding og addresse videre til node 2");
+                skriveren2.println(nextNode[0]);
+                //skriveren2.println(encryptedMessage);
+                //String respons = leseren2.readLine();  // mottar respons fra tjeneren
+                skriveren.println(decryptedData);
+            }
+        } else {
             skriveren.println(decryptedData);
         }
+
+
+
+
+
 
         /* Lukker forbindelsen */
         leseren.close();
