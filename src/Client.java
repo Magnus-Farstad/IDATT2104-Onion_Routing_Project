@@ -13,8 +13,9 @@ import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.util.Base64;
 import java.util.Scanner;
+import java.util.concurrent.TimeUnit;
 
-import static API.APIService.apiGETRequest;
+import static API.APIService.*;
 
 public class Client {
 
@@ -23,22 +24,31 @@ public class Client {
 
 
     public static void main(String[] args) throws Exception {
-        final int PORTNR1 = 1251;
-        final int PORTNR2 = 1252;
-        final int PORTNR3 = 1253;
 
         final RSAKeyPairGenerator keyPairGenerator1 = new RSAKeyPairGenerator();
         keyPairGenerator1.initFromStrings(PUBLIC_KEY_1, PRIVATE_KEY_1);
 
+        int responseCode = apiPOSTKey("http://localhost:8080/postPublicKey", PUBLIC_KEY_1);
+        System.out.println(responseCode);
 
-
-        /* Bruker en scanner til å lese fra kommandovinduet */
         Scanner leserFraKommandovindu = new Scanner(System.in);
-        System.out.print("Oppgi navnet på maskinen der tjenerprogrammet kjører: ");
-        String tjenermaskin = leserFraKommandovindu.nextLine();
+
+        TimeUnit.SECONDS.sleep(20);
+        String response = apiGETRequest("http://localhost:8080/getNodes");
+
+        System.out.println(response);
+
+        String[] list = response.split(",");
+        String aesKeyString = list[1];
+        String address = list[2];
+        String decryptedAESKeyString = keyPairGenerator1.decrypt(aesKeyString);
+
+        AESencryption aeSencryption = new AESencryption();
+        SecretKey aesKey = aeSencryption.convertStringToSecretKeyto(decryptedAESKeyString);
+        System.out.println("SECRETKEY: " + aesKey);
 
         /* Setter opp forbindelsen til tjenerprogrammet */
-        Socket forbindelse = new Socket(tjenermaskin, 1250);
+        Socket forbindelse = new Socket(address, 1250);
         System.out.println("Nå er forbindelsen opprettet.");
 
         /* �pner en forbindelse for kommunikasjon med tjenerprogrammet */
@@ -46,15 +56,6 @@ public class Client {
         BufferedReader leseren = new BufferedReader(leseforbindelse);
         PrintWriter skriveren = new PrintWriter(forbindelse.getOutputStream(), true);
 
-        String response = apiGETRequest("http://localhost:8080/getNodes");
-        System.out.println(response);
-        String[] list = response.split(",");
-        String aesKeyString = list[1];
-        String decryptedAESKeyString = keyPairGenerator1.decrypt(aesKeyString);
-
-        AESencryption aeSencryption = new AESencryption();
-        SecretKey aesKey = aeSencryption.convertStringToSecretKeyto(decryptedAESKeyString);
-        System.out.println("SECRETKEY: " + aesKey);
 
 
 

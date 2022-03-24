@@ -22,7 +22,8 @@ public class SocketThread extends Thread {
     @Override
     public void run(){
 
-        EncryptionManager encryptionManager = new EncryptionManager();
+        String fewrg = " W4G";
+        EncryptionManager encryptionManager = new EncryptionManager(fewrg);
         encryptionManager.initFromStrings();
         try {
             /* åpner strømmer for kommunikasjon med klientprogrammet */

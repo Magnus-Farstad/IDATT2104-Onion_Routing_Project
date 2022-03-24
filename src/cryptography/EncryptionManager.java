@@ -13,8 +13,11 @@ import java.util.Base64;
 public class EncryptionManager {
 
     private PublicKey publicKey;
-    String PUBLIC_KEY = "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCbOoTJNXIUXkWu+lQFceNmAxgL/mxsC5cQGcmy8APaRblNqI9U/aXQ1kHp+Jv2KNKDhUACrHdRVpyCz7XSFNyLPvpOA2DAkhECvhQOGtcGeYIcdUIlHLv3tPIJfZw7WMhmYsWaRm/ITOT06MjUy9QKigxDzrxBF/i4mvR6ff+4VQIDAQAB";
+    String PUBLIC_KEY;
 
+    public EncryptionManager(String PUBLIC_KEY){
+        this.PUBLIC_KEY = PUBLIC_KEY;
+    }
 
     public void initFromStrings(){
         try{

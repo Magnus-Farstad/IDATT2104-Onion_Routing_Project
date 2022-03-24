@@ -52,6 +52,10 @@ public class APIService {
         HttpURLConnection http = (HttpURLConnection) new URL(url).openConnection();
         return nodeAction(http, "POST", port, aesKey, address);
     }
+    public static int apiPOSTKey(String url, String key) throws Exception {
+        HttpURLConnection http = (HttpURLConnection) new URL(url).openConnection();
+        return publickeyAction(http, "POST", key);
+    }
 
 
     private static int nodeAction(HttpURLConnection http, String action, String port, String aesKey, String address) throws IOException {
@@ -63,6 +67,24 @@ public class APIService {
         String data = "{  \"port\":\"" + port + "\"," +
                          "\"key\":\"" + aesKey +  "\"," +
                          "\"address\":\"" + address + "\" }";
+
+        byte[] out = data.getBytes(StandardCharsets.UTF_8);
+        OutputStream stream = http.getOutputStream();
+        stream.write(out);
+        int responseCode = http.getResponseCode();
+
+        http.disconnect();
+
+        return responseCode;
+    }
+    private static int publickeyAction(HttpURLConnection http, String action, String key) throws IOException {
+
+        http.setRequestMethod(action);
+        http.setDoOutput(true);
+        http.setRequestProperty("Content-Type", "application/json");
+
+        String data = "{  \"publickey\":\"" + key + "\" }";
+
 
         byte[] out = data.getBytes(StandardCharsets.UTF_8);
         OutputStream stream = http.getOutputStream();

@@ -8,32 +8,34 @@ import javax.crypto.SecretKey;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
+import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.Scanner;
 
+import static API.APIService.apiGETRequest;
 import static API.APIService.apiPOSTNode;
 
 public class NodeMain {
 
-    private static final String PUBLIC_KEY_1 = "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCbOoTJNXIUXkWu+lQFceNmAxgL/mxsC5cQGcmy8APaRblNqI9U/aXQ1kHp+Jv2KNKDhUACrHdRVpyCz7XSFNyLPvpOA2DAkhECvhQOGtcGeYIcdUIlHLv3tPIJfZw7WMhmYsWaRm/ITOT06MjUy9QKigxDzrxBF/i4mvR6ff+4VQIDAQAB";
 
     public static void main(String[] args) throws Exception {
+        String publickey = apiGETRequest("http://localhost:8080/getPublicKey");
 
-        EncryptionManager encryptionManager = new EncryptionManager();
+        EncryptionManager encryptionManager = new EncryptionManager(publickey);
         encryptionManager.initFromStrings();
+
         AESencryption aesEncryption = new AESencryption();
         SecretKey aesKey = aesEncryption.generateAESKey();
 
         System.out.println("Skriv inn portnummer til noden");
         Scanner leserFraKommandovindu = new Scanner(System.in);
         String PORTNR = leserFraKommandovindu.nextLine();
-        System.out.println("Skriv inn addressen til noden");
-        String nodeAddress = leserFraKommandovindu.nextLine();
+
         System.out.println("Skriv inn addressen til serveren");
         String serverAddress = leserFraKommandovindu.nextLine();
 
-        Node node1 = new Node(aesKey, Integer.parseInt(PORTNR));
+        String nodeAddress = InetAddress.getLocalHost().getHostAddress();
 
         String aesKeyString = aesEncryption.convertSecretKeyToString(aesKey);
         String encryptedAES = encryptionManager.encrypt(aesKeyString);
