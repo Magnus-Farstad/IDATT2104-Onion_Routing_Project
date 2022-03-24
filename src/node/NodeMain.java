@@ -20,7 +20,12 @@ public class NodeMain {
 
 
     public static void main(String[] args) throws Exception {
-        String publickey = apiGETRequest("http://localhost:8080/getPublicKey");
+
+        Scanner leserFraKommandovindu = new Scanner(System.in);
+        System.out.println("Skriv inn addressen til serveren");
+        String serverAddress = leserFraKommandovindu.nextLine();
+
+        String publickey = apiGETRequest("http://" + serverAddress + ":8080/getPublicKey");
 
         EncryptionManager encryptionManager = new EncryptionManager(publickey);
         encryptionManager.initFromStrings();
@@ -29,11 +34,7 @@ public class NodeMain {
         SecretKey aesKey = aesEncryption.generateAESKey();
 
         System.out.println("Skriv inn portnummer til noden");
-        Scanner leserFraKommandovindu = new Scanner(System.in);
         String PORTNR = leserFraKommandovindu.nextLine();
-
-        System.out.println("Skriv inn addressen til serveren");
-        String serverAddress = leserFraKommandovindu.nextLine();
 
         String nodeAddress = InetAddress.getLocalHost().getHostAddress();
 
