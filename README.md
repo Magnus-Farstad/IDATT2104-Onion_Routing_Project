@@ -1,6 +1,6 @@
 # Onion Routing
 
- Dette er et frivillig prosjekt i IDATT2104- Nettverksprogrammering for å forbedre karakteren i faget. 
+ Dette er et frivillig prosjekt i IDATT2104- Nettverksprogrammering for å forbedre karakteren i faget 😏
 
 ## Oppgave
 
@@ -51,6 +51,9 @@ mvn spring-boot:run
 - Nå er klientens offentlige nøkkel lagret i server slik at fremtidige aktive naboer kan hente ut denne
 
 - Klienten vil nå vente på at noder kobler seg opp på server og deretter hente dem ut
+
+<img src="![Bilde 24 03 2022 klokken 20 23](https://user-images.githubusercontent.com/91839835/159995048-bd9c07cc-853f-4d75-b44e-417c431920c7.jpg)
+" alt="ClientServer" style="height: 100px; width:100px;"/>
 
 
 ### Steg 3 - Kjør NodeMain:
