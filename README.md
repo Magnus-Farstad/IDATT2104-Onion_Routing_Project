@@ -1,4 +1,4 @@
-# Onion Routing
+# Onion Routing 🧅
 
  Dette er et frivillig prosjekt i IDATT2104- Nettverksprogrammering for å forbedre karakteren i faget 😏
 
@@ -6,7 +6,7 @@
 
 Implementer onion routing enten som programvare eller programvarebibliotek i et valgfritt programmeringsspråk
 
-## Løsning
+## Løsning 📝
 
 - Programmet er utviklet i Java
 
@@ -22,7 +22,7 @@ Implementer onion routing enten som programvare eller programvarebibliotek i et 
 Legg inn tegninger og mer forklaring
 
 
-## Videre utvikling
+## Videre utvikling 🏗️
 
 Videre utvikling vil bestå av å gjøre løsningen mer dynamisk ved at noder blir laget fortløpende...
 
@@ -32,7 +32,7 @@ Videre utvikling vil bestå av å gjøre løsningen mer dynamisk ved at noder bl
 Kort beskrivelse av hver avhengighet. Hva er egentlig våre avhengigheter?
 
 
-## Installasjon/Instruksjon
+## Installasjon/Instruksjon 🗃️
 
 For å kune kjøre programmet vårt kreves det:
 
@@ -52,8 +52,8 @@ mvn spring-boot:run
 
 - Klienten vil nå vente på at noder kobler seg opp på server og deretter hente dem ut
 
-<img src="![Bilde 24 03 2022 klokken 20 23](https://user-images.githubusercontent.com/91839835/159995048-bd9c07cc-853f-4d75-b44e-417c431920c7.jpg)
-" alt="ClientServer" style="height: 100px; width:100px;"/>
+![ClientServer](/Users/simenklemppetersen/Desktop/ClientServer.jpg "ClientServer")
+
 
 
 ### Steg 3 - Kjør NodeMain:
@@ -75,7 +75,7 @@ mvn spring-boot:run
 Vi har tatt i bruk JUnit tester i backend for å gjøre kritisk funksjonalitet stabil. Vi har ikke fokusert på testing i Rest API server.
 
 
-## API 
+## API 📡
 
 Besøk vår Rest server [Node Rest API](https://github.com/mariusklemp/OnionRouterREST) !
 
