@@ -65,9 +65,13 @@ mvn spring-boot:run
 - Man har også gitt klient tilgang på alle aktive noder sine kryptere nøkler, samt portnumere
 
 
+
 ### Steg 4 - Handling:
 
 - Nå gjenstår det bare å sende meldinger kryptert !
+
+![Bilde 24 03 2022 klokken 20 23](https://user-images.githubusercontent.com/91839835/159998647-b62e589f-767e-4653-a049-3780b524a5f1.jpg)
+
 
 
 ## Tester
