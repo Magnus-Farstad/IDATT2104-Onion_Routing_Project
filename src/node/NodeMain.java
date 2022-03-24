@@ -91,6 +91,11 @@ public class NodeMain {
             skriveren.println(decryptedData);
         }
 
+
+
+
+
+
         /* Lukker forbindelsen */
         leseren.close();
         skriveren.close();
