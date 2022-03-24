@@ -48,20 +48,21 @@ public class APIService {
      * @throws Exception if the connection cannot be established
      * @return response code from server
      */
-    public static int apiPOSTNode(String url,  String port, String aesKey) throws Exception {
+    public static int apiPOSTNode(String url,  String port, String aesKey, String address) throws Exception {
         HttpURLConnection http = (HttpURLConnection) new URL(url).openConnection();
-        return nodeAction(http, "POST", port, aesKey);
+        return nodeAction(http, "POST", port, aesKey, address);
     }
 
 
-    private static int nodeAction(HttpURLConnection http, String action, String port, String aesKey) throws IOException {
+    private static int nodeAction(HttpURLConnection http, String action, String port, String aesKey, String address) throws IOException {
 
         http.setRequestMethod(action);
         http.setDoOutput(true);
         http.setRequestProperty("Content-Type", "application/json");
 
-        String data = "{  \"address\":\"" + port + "\"," +
-                         "\"key\":\"" + aesKey +  "\" }";
+        String data = "{  \"port\":\"" + port + "\"," +
+                         "\"key\":\"" + aesKey +  "\"," +
+                         "\"address\":\"" + address + "\" }";
 
         byte[] out = data.getBytes(StandardCharsets.UTF_8);
         OutputStream stream = http.getOutputStream();

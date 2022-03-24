@@ -28,13 +28,17 @@ public class NodeMain {
         System.out.println("Skriv inn portnummer til noden");
         Scanner leserFraKommandovindu = new Scanner(System.in);
         String PORTNR = leserFraKommandovindu.nextLine();
+        System.out.println("Skriv inn addressen til noden");
+        String nodeAddress = leserFraKommandovindu.nextLine();
+        System.out.println("Skriv inn addressen til serveren");
+        String serverAddress = leserFraKommandovindu.nextLine();
 
         Node node1 = new Node(aesKey, Integer.parseInt(PORTNR));
 
         String aesKeyString = aesEncryption.convertSecretKeyToString(aesKey);
         String encryptedAES = encryptionManager.encrypt(aesKeyString);
 
-        int responseCode = apiPOSTNode("http://localhost:8080/postNode", PORTNR, encryptedAES);
+        int responseCode = apiPOSTNode("http://" + serverAddress + ":8080/postNode", PORTNR, encryptedAES, nodeAddress);
         System.out.println(responseCode);
 
         ServerSocket tjener = new ServerSocket(Integer.parseInt(PORTNR));
