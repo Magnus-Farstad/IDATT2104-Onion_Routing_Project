@@ -56,6 +56,10 @@ public class APIService {
         HttpURLConnection http = (HttpURLConnection) new URL(url).openConnection();
         return publickeyAction(http, "POST", key);
     }
+    public static int apiPOSTMessage(String url, String message) throws Exception {
+        HttpURLConnection http = (HttpURLConnection) new URL(url).openConnection();
+        return publickeyAction(http, "POST", message);
+    }
 
 
     private static int nodeAction(HttpURLConnection http, String action, String port, String aesKey, String address) throws IOException {

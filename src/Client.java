@@ -69,26 +69,25 @@ public class Client {
         PrintWriter skriveren = new PrintWriter(forbindelse.getOutputStream(), true);
 
 
-
-
-        /* Leser innledning fra tjeneren og skriver den til kommandovinduet */
-        String innledning1 = leseren.readLine();
-        System.out.println(innledning1);
-
         /* Leser tekst fra kommandovinduet (brukeren) */
         String enLinje = leserFraKommandovindu.nextLine();
         String encryptedMessage = enLinje;
         while (!enLinje.equals("")) {
+            encryptedMessage = aeSencryption.encrypt(encryptedMessage,keys.get(list.length-1));
             for(int i= list.length-1; i > 0; i--){
-
-                encryptedMessage = aeSencryption.encrypt(encryptedMessage,keys.get(i));
                 encryptedMessage += "," + ports.get(i) + "," + addresses.get(i);
                 encryptedMessage = aeSencryption.encrypt(encryptedMessage,keys.get(i-1));
             }
-
             skriveren.println(encryptedMessage);
-            String respons = leseren.readLine();  // mottar respons fra tjeneren
+            String respons = leseren.readLine();
             System.out.println(respons);
+
+            for(int i = 0; i < list.length; i++ ){
+                respons = aeSencryption.decrypt(respons, keys.get(i));
+            }
+
+            System.out.println(respons);
+
             enLinje = leserFraKommandovindu.nextLine();
         }
 

@@ -14,8 +14,7 @@ import java.net.Socket;
 import java.security.PublicKey;
 import java.util.Scanner;
 
-import static API.APIService.apiGETRequest;
-import static API.APIService.apiPOSTNode;
+import static API.APIService.*;
 
 public class NodeMain {
 
@@ -92,7 +91,10 @@ public class NodeMain {
             System.out.println(encryptedMesageBack);
 
         } else {
-            String encryptedMesageBack = aesEncryption.encrypt(decryptedData, aesKey);
+            int responseCode2 = apiPOSTKey("http://localhost:8080/postMessage", decryptedData);
+            System.out.println(responseCode2);
+            String message = apiGETRequest("http://" + serverAddress + ":8080/getMessage");
+            String encryptedMesageBack = aesEncryption.encrypt(message, aesKey);
             System.out.println(encryptedMesageBack);
             skriveren.println(encryptedMesageBack);
         }
