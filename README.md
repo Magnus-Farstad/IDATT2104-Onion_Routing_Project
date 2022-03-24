@@ -76,8 +76,7 @@ mvn spring-boot:run
 
 - Nå gjenstår det bare å sende meldinger kryptert !
 
-
-
+![Bilde 24 03 2022 klokken 20 24](https://user-images.githubusercontent.com/91839835/159998678-b71acf52-e792-4982-88c5-76366a14ea99.jpg)
 
 
 ## Tester
