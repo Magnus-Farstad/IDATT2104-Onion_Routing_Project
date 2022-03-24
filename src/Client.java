@@ -32,9 +32,9 @@ public class Client {
         ArrayList<String> addresses = new ArrayList<>();
 
 
-
-        final RSAKeyPairGenerator keyPairGenerator1 = new RSAKeyPairGenerator();
-        keyPairGenerator1.initFromStrings(PUBLIC_KEY_1, PRIVATE_KEY_1);
+        final RSAKeyPairGenerator keyPairGenerator = new RSAKeyPairGenerator();
+        keyPairGenerator.initKeys();
+        keyPairGenerator.initFromStrings(keyPairGenerator.getPublicKey(), keyPairGenerator.getPrivateKey());
         AESencryption aeSencryption = new AESencryption();
 
         int responseCode = apiPOSTKey("http://localhost:8080/postPublicKey", PUBLIC_KEY_1);
@@ -52,7 +52,7 @@ public class Client {
         for(int i = 0; i < list.length; i++){
             String[] node =  list[i].split(",");
             ports.add(node[0]);
-            String decryptedAESKeyString = keyPairGenerator1.decrypt(node[1]);
+            String decryptedAESKeyString = keyPairGenerator.decrypt(node[1]);
             SecretKey aesKey = aeSencryption.convertStringToSecretKeyto(decryptedAESKeyString);
             keys.add(aesKey);
             addresses.add(node[2]);

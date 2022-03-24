@@ -54,11 +54,11 @@ public class APIService {
     }
     public static int apiPOSTKey(String url, String key) throws Exception {
         HttpURLConnection http = (HttpURLConnection) new URL(url).openConnection();
-        return publickeyAction(http, "POST", key);
+        return StringAction(http, "POST", key);
     }
     public static int apiPOSTMessage(String url, String message) throws Exception {
         HttpURLConnection http = (HttpURLConnection) new URL(url).openConnection();
-        return publickeyAction(http, "POST", message);
+        return StringAction(http, "POST", message);
     }
 
 
@@ -81,13 +81,13 @@ public class APIService {
 
         return responseCode;
     }
-    private static int publickeyAction(HttpURLConnection http, String action, String key) throws IOException {
+    private static int StringAction(HttpURLConnection http, String action, String key) throws IOException {
 
         http.setRequestMethod(action);
         http.setDoOutput(true);
         http.setRequestProperty("Content-Type", "application/json");
 
-        String data = "{  \"publickey\":\"" + key + "\" }";
+        String data = "{  \"string\":\"" + key + "\" }";
 
 
         byte[] out = data.getBytes(StandardCharsets.UTF_8);
