@@ -63,7 +63,7 @@ public class NodeMain {
         PrintWriter skriveren = new PrintWriter(forbindelse.getOutputStream(), true);
 
         /* Sender innledning til klienten */
-        skriveren.println("Hei, du har kontakt med node 1!");
+        //skriveren.println("Hei, du har kontakt med node 1!");
 
         String encryptedMessage = leseren.readLine();
         System.out.println(encryptedMessage);
@@ -80,12 +80,14 @@ public class NodeMain {
             InputStreamReader leseforbindelse2 = new InputStreamReader(forbindelse2.getInputStream());
             BufferedReader leseren2 = new BufferedReader(leseforbindelse2);
             PrintWriter skriveren2 = new PrintWriter(forbindelse2.getOutputStream(), true);
-            while (nextNode[0] != "") {
+
+            while (true) {
                 System.out.println("sender krypter melding og addresse videre til node 2");
                 skriveren2.println(nextNode[0]);
-                //skriveren2.println(encryptedMessage);
-                //String respons = leseren2.readLine();  // mottar respons fra tjeneren
-                skriveren.println(decryptedData);
+
+                String messageFromNext = leseren2.readLine();
+
+                skriveren.println(messageFromNext);
             }
         } else {
             skriveren.println(decryptedData);
