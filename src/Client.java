@@ -27,7 +27,7 @@ public class Client {
 
     public static void main(String[] args) throws Exception {
 
-        ArrayList<String> keys = new ArrayList<>();
+        ArrayList<SecretKey> keys = new ArrayList<>();
         ArrayList<String> ports = new ArrayList<>();
         ArrayList<String> addresses = new ArrayList<>();
 
@@ -51,9 +51,10 @@ public class Client {
 
         for(int i = 0; i < list.length; i++){
             String[] node =  list[i].split(",");
-
             ports.add(node[0]);
-            keys.add(node[1]);
+            String decryptedAESKeyString = keyPairGenerator1.decrypt(node[1]);
+            SecretKey aesKey = aeSencryption.convertStringToSecretKeyto(decryptedAESKeyString);
+            keys.add(aesKey);
             addresses.add(node[2]);
         }
 
@@ -78,13 +79,11 @@ public class Client {
         String enLinje = leserFraKommandovindu.nextLine();
         String encryptedMessage = enLinje;
         while (!enLinje.equals("")) {
-            for(int i= list.length-1; i >= 0; i--){
-                String decryptedAESKeyString = keyPairGenerator1.decrypt(keys.get(i));
-                SecretKey aesKey = aeSencryption.convertStringToSecretKeyto(decryptedAESKeyString);
+            for(int i= list.length-1; i > 0; i--){
 
-                encryptedMessage = aeSencryption.encrypt(encryptedMessage,aesKey);
-                encryptedMessage += "," + ports.get(i-1) + "," + addresses.get(i-1);
-                encryptedMessage = aeSencryption.encrypt(encryptedMessage,aesKey);
+                encryptedMessage = aeSencryption.encrypt(encryptedMessage,keys.get(i));
+                encryptedMessage += "," + ports.get(i) + "," + addresses.get(i);
+                encryptedMessage = aeSencryption.encrypt(encryptedMessage,keys.get(i-1));
             }
 
             skriveren.println(encryptedMessage);
