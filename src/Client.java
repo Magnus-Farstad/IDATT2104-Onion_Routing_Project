@@ -37,7 +37,7 @@ public class Client {
         keyPairGenerator.initFromStrings(keyPairGenerator.getPublicKey(), keyPairGenerator.getPrivateKey());
         AESencryption aeSencryption = new AESencryption();
 
-        int responseCode = apiPOSTKey("http://localhost:8080/postPublicKey", PUBLIC_KEY_1);
+        int responseCode = apiPOSTString("http://localhost:8080/postPublicKey", PUBLIC_KEY_1);
         System.out.println(responseCode);
 
         Scanner leserFraKommandovindu = new Scanner(System.in);

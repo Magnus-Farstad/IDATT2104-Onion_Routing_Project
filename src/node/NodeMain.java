@@ -91,7 +91,7 @@ public class NodeMain {
             System.out.println(encryptedMesageBack);
 
         } else {
-            int responseCode2 = apiPOSTKey("http://" + serverAddress + ":8080/postMessage", decryptedData);
+            int responseCode2 = apiPOSTString("http://" + serverAddress + ":8080/postMessage", decryptedData);
             System.out.println(responseCode2);
             String message = apiGETRequest("http://" + serverAddress + ":8080/getMessage");
             String encryptedMesageBack = aesEncryption.encrypt(message, aesKey);
