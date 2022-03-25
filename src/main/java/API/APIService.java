@@ -8,17 +8,8 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 
-/**
- * Class to make api calls
- */
 public class APIService {
 
-    /**
-     * Method to make GET request
-     * @param url url to the wanted host
-     * @return the response from the host
-     * @throws Exception if a connection could not be established
-     */
     public static String apiGETRequest(String url) throws Exception {
         URL urlForGetRequest = new URL(url);
         HttpURLConnection connection = (HttpURLConnection) urlForGetRequest.openConnection();
@@ -40,27 +31,19 @@ public class APIService {
         }
     }
 
-    /**
-     * Specific post method to publish a node to the OnionRouterServer
-     *
-     * @param url the target url
-     * @param address the ip and port of the node
-     * @throws Exception if the connection cannot be established
-     * @return response code from server
-     */
+
     public static int apiPOSTNode(String url,  String port, String aesKey, String address) throws Exception {
         HttpURLConnection http = (HttpURLConnection) new URL(url).openConnection();
         return nodeAction(http, "POST", port, aesKey, address);
     }
+
     public static int apiPOSTString(String url, String key) throws Exception {
         HttpURLConnection http = (HttpURLConnection) new URL(url).openConnection();
         return StringAction(http, "POST", key);
     }
 
 
-
     private static int nodeAction(HttpURLConnection http, String action, String port, String aesKey, String address) throws IOException {
-
         http.setRequestMethod(action);
         http.setDoOutput(true);
         http.setRequestProperty("Content-Type", "application/json");
@@ -78,8 +61,8 @@ public class APIService {
 
         return responseCode;
     }
-    private static int StringAction(HttpURLConnection http, String action, String key) throws IOException {
 
+    private static int StringAction(HttpURLConnection http, String action, String key) throws IOException {
         http.setRequestMethod(action);
         http.setDoOutput(true);
         http.setRequestProperty("Content-Type", "application/json");

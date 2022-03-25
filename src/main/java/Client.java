@@ -18,16 +18,17 @@ public class Client {
         ArrayList<String> ports = new ArrayList<>();
         ArrayList<String> addresses = new ArrayList<>();
 
-
         final RSAKeyPairGenerator keyPairGenerator = new RSAKeyPairGenerator();
         keyPairGenerator.initKeys();
         keyPairGenerator.initFromStrings(keyPairGenerator.getPublicKey(), keyPairGenerator.getPrivateKey());
         AESEncryption aeSencryption = new AESEncryption();
 
         int responseCode = apiPOSTString("http://localhost:8080/postPublicKey", keyPairGenerator.getPublicKey());
-        System.out.println(responseCode);
+        if(responseCode == 201){
+            System.out.println("Successfully posted publickey to server");
+        }
 
-        Scanner leserFraKommandovindu = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in);
 
         TimeUnit.SECONDS.sleep(20);
         String response = apiGETRequest("http://localhost:8080/getNodes");
@@ -45,45 +46,40 @@ public class Client {
             addresses.add(node[2]);
         }
 
-        /* Setter opp forbindelsen til tjenerprogrammet */
         String[] node1 = list[0].split(",");
-        Socket forbindelse = new Socket(node1[2], Integer.parseInt(node1[0]));
-        System.out.println("Nå er forbi1250,AQNt1urgAvLf7Nht4ViXrYyqAGwydGaYSCCCnTFAaYzsCOYLu0sSajSn+w/yhpnS+OeCMhZ+1Hzu0yJ71lr2C6U5QN0kZsqCJjrk9YDSPMzP5On73ngykU2mu3V3VZawxYeccpi679yyzfWIIahR6WK0cAd4ErIcDjbVvzzr1/Q=,10.22.2.181ndelsen opprettet.");
+        Socket connection = new Socket(node1[2], Integer.parseInt(node1[0]));
 
-        /* �pner en forbindelse for kommunikasjon med tjenerprogrammet */
-        InputStreamReader leseforbindelse = new InputStreamReader(forbindelse.getInputStream());
-        BufferedReader leseren = new BufferedReader(leseforbindelse);
-        PrintWriter skriveren = new PrintWriter(forbindelse.getOutputStream(), true);
+        InputStreamReader readerConnection = new InputStreamReader(connection.getInputStream());
+        BufferedReader reader = new BufferedReader(readerConnection);
+        PrintWriter writer = new PrintWriter(connection.getOutputStream(), true);
 
 
-        /* Leser tekst fra kommandovinduet (brukeren) */
-        String enLinje = leserFraKommandovindu.nextLine();
-        String encryptedMessage = enLinje;
-        while (!enLinje.equals("")) {
+        String text = scanner.nextLine();
+        String encryptedMessage = text;
+        while (!text.equals("")) {
             encryptedMessage = aeSencryption.encrypt(encryptedMessage,keys.get(list.length-1));
             for(int i= list.length-1; i > 0; i--){
                 encryptedMessage += "," + ports.get(i) + "," + addresses.get(i);
                 encryptedMessage = aeSencryption.encrypt(encryptedMessage,keys.get(i-1));
             }
 
-            skriveren.println(encryptedMessage);
-            System.out.println("Sender kryptert melding..." + encryptedMessage + "\n");
+            writer.println(encryptedMessage);
+            System.out.println("Sending encrypted message..." + encryptedMessage + "\n");
 
-            String respons = leseren.readLine();
-            System.out.println("Får respons..." + respons + "\n");
+            String respons = reader.readLine();
+            System.out.println("Received response..." + respons + "\n");
 
             for(int i = 0; i < list.length; i++ ){
                 respons = aeSencryption.decrypt(respons, keys.get(i));
             }
 
-            System.out.println("Dekrypterer respons og får..." + respons + "\n");
+            System.out.println("Decrypting response..." + respons + "\n");
 
-            encryptedMessage = leserFraKommandovindu.nextLine();
+            encryptedMessage = scanner.nextLine();
         }
 
-        /* Lukker forbindelsen */
-        leseren.close();
-        skriveren.close();
-        forbindelse.close();
+        reader.close();
+        writer.close();
+        connection.close();
     }
 }
