@@ -20,29 +20,35 @@ public class AESencryptionTest {
     class generateKeysTest {
         @DisplayName("Successfully generate keys positive")
         @Test
-        public void successfullyGenerateKeysPositive() throws NoSuchAlgorithmException {
+        public void successfullyGenerateKeysPositive() {
+
+            String secretAESKEY = null;
             try {
                 AESencryption aeSencryption = new AESencryption();
 
-                String secretAESKEY = aeSencryption.convertSecretKeyToString(aeSencryption.generateAESKey());
+                secretAESKEY = aeSencryption.convertSecretKeyToString(aeSencryption.generateAESKey());
 
-                Assertions.assertNotNull(secretAESKEY);
             } catch (Exception exception) {
                 System.out.println(exception.getMessage());
+            } finally {
+                Assertions.assertNotNull(secretAESKEY);
             }
         }
 
         @DisplayName("Successfully generate keys negative")
         @Test
-        public void successfullyGenerateKeysNegative() throws NoSuchAlgorithmException {
+        public void successfullyGenerateKeysNegative() {
+
+            String secretAESKEY = null;
             try {
                 AESencryption aeSencryption = new AESencryption();
 
-                String secretAESKEY = aeSencryption.convertSecretKeyToString(aeSencryption.generateAESKey());
+                secretAESKEY = aeSencryption.convertSecretKeyToString(aeSencryption.generateAESKey());
 
-                Assertions.assertNull(secretAESKEY);
             } catch (Exception exception) {
                 System.out.println(exception.getMessage());
+            } finally {
+                Assertions.assertNull(secretAESKEY);
             }
         }
     }
