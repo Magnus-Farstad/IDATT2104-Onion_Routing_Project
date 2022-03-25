@@ -1,4 +1,6 @@
+RSAKeyPairGeneratorTest$GenerateKeys.class
 RSAKeyPairGeneratorTest.class
-RSAKeyPairGeneratorTest$EncryptString.class
-RSAKeyPairGeneratorTest$generateKeys.class
+AESencryptionTest$encryptDecryptAES.class
 AESencryptionTest.class
+AESencryptionTest$generateKeysTest.class
+RSAKeyPairGeneratorTest$Encrypt.class

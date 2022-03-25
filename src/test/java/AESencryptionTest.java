@@ -35,24 +35,6 @@ public class AESencryptionTest {
                 Assertions.assertNotNull(secretAESkey);
             }
         }
-
-        @DisplayName("Successfully generate keys negative")
-        @Test
-        public void successfullyGenerateKeysNegative() {
-            String secretAESKEY = null;
-            try {
-                AESencryption aeSencryption = new AESencryption();
-
-                secretAESKEY = aeSencryption.convertSecretKeyToString(aeSencryption.generateAESKey());
-
-
-            } catch (Exception exception) {
-                System.out.println(exception.getMessage());
-            }
-            finally {
-                Assertions.assertNull(secretAESKEY);
-            }
-        }
     }
 
     @Nested
@@ -67,16 +49,11 @@ public class AESencryptionTest {
 
             try {
                 AESencryption aesEncryption = new AESencryption();
-
                 SecretKey secretKey = aesEncryption.generateAESKey();
 
                 message = "This is a message";
-
                 encryptedMessage = aesEncryption.encrypt(message, secretKey);
-
                 decryptedMessage = aesEncryption.decrypt(encryptedMessage, secretKey);
-
-
 
             } catch (Exception exception) {
                 System.out.println(exception.getMessage());
@@ -94,24 +71,21 @@ public class AESencryptionTest {
             String message = null;
             String decryptedMessage = "";
             String encryptedMessage = null;
-
             try {
                 AESencryption aesEncryption = new AESencryption();
-
                 SecretKey secretKey = aesEncryption.generateAESKey();
+                SecretKey secretKey1 = aesEncryption.generateAESKey();
 
                 message = "This is a message";
-
                 encryptedMessage = aesEncryption.encrypt(message, secretKey);
-
-                decryptedMessage = aesEncryption.decrypt(encryptedMessage, secretKey);
+                decryptedMessage = aesEncryption.decrypt(encryptedMessage, secretKey1);
 
             } catch (Exception exception) {
                 System.out.println(exception.getMessage());
             }
             finally {
                 Assertions.assertNotEquals(message, encryptedMessage);
-                Assertions.assertEquals(message, decryptedMessage);
+                Assertions.assertNotEquals(message, decryptedMessage);
             }
         }
     }
