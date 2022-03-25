@@ -15,15 +15,23 @@ import java.security.NoSuchAlgorithmException;
 @DisplayName("RSA Key pair generator test")
 public class RSAKeyPairGeneratorTest {
 
-    @DisplayName("")
+    @DisplayName("Successfully generate keys")
     @Test
-    public void successfullyGenerateKeys() {
+    public void successfullyGenerateKeys() throws NoSuchAlgorithmException {
+        RSAKeyPairGenerator rsaKeyPairGenerator = new RSAKeyPairGenerator();
+        rsaKeyPairGenerator.initKeys();
+
+        String public_key = rsaKeyPairGenerator.getPublicKey();
+        String private_key = rsaKeyPairGenerator.getPrivateKey();
+
+        Assertions.assertNotNull(public_key);
+        Assertions.assertNotNull(private_key);
 
     }
 
-    @DisplayName("Test")
+    @DisplayName("Encrypt AES key with RSA public key")
     @Test
-    public void testEncryptDecryptRSA() throws NoSuchAlgorithmException, IllegalBlockSizeException, NoSuchPaddingException, BadPaddingException, InvalidKeyException, UnsupportedEncodingException {
+    public void encryptAESWithRSA() throws NoSuchAlgorithmException, IllegalBlockSizeException, NoSuchPaddingException, BadPaddingException, InvalidKeyException, UnsupportedEncodingException {
 
         RSAKeyPairGenerator rsaKeyPairGenerator = new RSAKeyPairGenerator();
 

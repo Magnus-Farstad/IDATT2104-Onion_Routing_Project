@@ -2,6 +2,9 @@ import cryptography.AESencryption;
 import cryptography.EncryptionManager;
 import cryptography.RSAKeyPairGenerator;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 
 import javax.crypto.BadPaddingException;
 import javax.crypto.IllegalBlockSizeException;
@@ -13,19 +16,28 @@ import java.security.NoSuchAlgorithmException;
 
 class AESencryptionTest {
 
-    @org.junit.jupiter.api.Test
-    public void testEncryptDecryptAES() throws NoSuchAlgorithmException{
-        AESencryption aesEncryption = new AESencryption();
 
-        SecretKey secretKey = aesEncryption.generateAESKey();
+    @DisplayName("Encrypt and decrypt with AES")
+    @Test
+    public void encryptDecryptAES(){
 
-        String message = "This is a message";
+        try{
+            AESencryption aesEncryption = new AESencryption();
 
-        String encryptedMessage = aesEncryption.encrypt(message, secretKey);
+            SecretKey secretKey = aesEncryption.generateAESKey();
 
-        String decryptedMessage = aesEncryption.decrypt(encryptedMessage, secretKey);
+            String message = "This is a message";
 
-        Assertions.assertNotEquals(message, encryptedMessage);
-        Assertions.assertEquals(message, decryptedMessage);
+            String encryptedMessage = aesEncryption.encrypt(message, secretKey);
+
+            String decryptedMessage = aesEncryption.decrypt(encryptedMessage, secretKey);
+
+            Assertions.assertNotEquals(message, encryptedMessage);
+            Assertions.assertEquals(message, decryptedMessage);
+
+        } catch (Exception exception) {
+            System.out.println(exception.getMessage());
+        }
+
     }
 }
