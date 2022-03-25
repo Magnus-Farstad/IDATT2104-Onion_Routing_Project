@@ -1,25 +1,28 @@
 # Onion Routing 🧅
 
  Dette er et frivillig prosjekt i IDATT2104- Nettverksprogrammering for å forbedre karakteren i faget 😏
+ 
+ Lenke til siste continuous integration/deployment kjøring: [CI/CD](https://github.com/mariusklemp/OnionRouterREST) !
 
 ## Oppgave
 
 Implementer onion routing enten som programvare eller programvarebibliotek i et valgfritt programmeringsspråk
 
+
+
 ## Løsning 📝
 
-- Programmet er utviklet i Java
+- Utviklingspråk: Java
 
-- Består av en klient samt et nettverk av noder som er holdt styr på med en Rest server 
+- Består av en klient samt et nettverk av noder som blir holdt styr på av en Rest server 
 
-- Rest server sin oppgave er å fordele nøkler, portnummer og adresse til de ulike nodene slik at man får opprettet en vei av noder ved oppkobling
+- Rest server sin oppgave er å fordele klientens offentlige nøkkel til de ulike aktive nodene, samt sende nodenes portnummer, adresse og krypterte AES nøkkel til klienten slik at det opprettes en rute av noder.  
 
-- For kryptering brukes både RSA og AES. RSA for sending av nøkler, og AES for sending av lag-kryptert melding. 
+- For kryptering brukes både RSA og AES. RSA for kryptering av AES nøkler, og AES for sending av lag-kryptert melding. 
 
-- Klienten kan sende inn en melding som viser til en API og motta et svar i form av en string.
+- Klienten kan sende en melding som går gjennom x antall noder, vise til en API server og motta et svar i form av en string.
 
-
-Legg inn tegninger og mer forklaring
+SKAL KANSJJE BILDENE LEGGES INN HER?
 
 
 ## Videre utvikling 🏗️

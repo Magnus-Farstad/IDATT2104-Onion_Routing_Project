@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
-Test set: RSAKeyPairGeneratorTest
+Test set: AESencryptionTest$generateKeysTest
 -------------------------------------------------------------------------------
-Tests run: 0, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.405 s - in RSAKeyPairGeneratorTest
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.01 s - in AESencryptionTest$generateKeysTest
