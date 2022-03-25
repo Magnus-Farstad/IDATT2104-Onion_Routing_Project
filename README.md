@@ -3,6 +3,8 @@
 
 
  Dette er et frivillig prosjekt i IDATT2104- Nettverksprogrammering for å forbedre karakteren i faget 😏
+ 
+ Lenke til siste workflow: [CI/CD](https://github.com/Magnus-Farstad/IDATT2104-Onion_Routing_Project/actions)
 
 ## Oppgave
 
