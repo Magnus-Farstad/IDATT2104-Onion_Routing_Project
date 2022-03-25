@@ -16,6 +16,17 @@ import java.security.NoSuchAlgorithmException;
 
 class AESencryptionTest {
 
+    @DisplayName("Successfully generate keys")
+    @Test
+    public void successfullyGenerateKeys() throws NoSuchAlgorithmException {
+        AESencryption aeSencryption = new AESencryption();
+
+        String secretAESKEY = aeSencryption.convertSecretKeyToString(aeSencryption.generateAESKey());
+
+        Assertions.assertNotNull(secretAESKEY);
+
+    }
+
 
     @DisplayName("Encrypt and decrypt with AES")
     @Test
