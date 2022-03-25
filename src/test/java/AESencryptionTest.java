@@ -20,7 +20,7 @@ public class AESencryptionTest {
     class generateKeysTest {
         @DisplayName("Successfully generate keys positive")
         @Test
-        public void successfullyGenerateKeysPositive() throws NoSuchAlgorithmException {
+        public void successfullyGenerateKeysPositive() {
             String secretAESkey = null;
             try {
                 AESencryption aeSencryption = new AESencryption();
@@ -38,7 +38,7 @@ public class AESencryptionTest {
 
         @DisplayName("Successfully generate keys negative")
         @Test
-        public void successfullyGenerateKeysNegative() throws NoSuchAlgorithmException {
+        public void successfullyGenerateKeysNegative() {
             String secretAESKEY = null;
             try {
                 AESencryption aeSencryption = new AESencryption();
