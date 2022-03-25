@@ -65,17 +65,20 @@ public class Client {
                 encryptedMessage += "," + ports.get(i) + "," + addresses.get(i);
                 encryptedMessage = aeSencryption.encrypt(encryptedMessage,keys.get(i-1));
             }
+
             skriveren.println(encryptedMessage);
+            System.out.println("Sender kryptert melding..." + encryptedMessage + "\n");
+
             String respons = leseren.readLine();
-            System.out.println(respons);
+            System.out.println("Får respons..." + respons + "\n");
 
             for(int i = 0; i < list.length; i++ ){
                 respons = aeSencryption.decrypt(respons, keys.get(i));
             }
 
-            System.out.println(respons);
+            System.out.println("Dekrypterer respons og får..." + respons + "\n");
 
-            enLinje = leserFraKommandovindu.nextLine();
+            encryptedMessage = leserFraKommandovindu.nextLine();
         }
 
         /* Lukker forbindelsen */
