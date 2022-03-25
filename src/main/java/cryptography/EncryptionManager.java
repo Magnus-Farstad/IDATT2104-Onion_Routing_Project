@@ -42,4 +42,6 @@ public class EncryptionManager {
         byte[] encryptedMessage = cipher.doFinal(data.getBytes());
         return encode(encryptedMessage);
     }
+
+
 }
