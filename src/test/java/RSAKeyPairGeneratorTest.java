@@ -24,7 +24,7 @@ public class RSAKeyPairGeneratorTest {
         @Test
         public void successfullyEncryptString() {
 
-            RSAKeyPairGenerator rsaKeyPairGenerator = null;
+            RSAKeyPairGenerator rsaKeyPairGenerator;
             String messageToBeEncrypted = "Hello, I am not encrypted!";
             String encryptedMessage = null;
             try {
@@ -43,10 +43,10 @@ public class RSAKeyPairGeneratorTest {
         @Test
         public void successfullyEncryptAesKey() {
 
-            RSAKeyPairGenerator rsaKeyPairGenerator = null;
+            RSAKeyPairGenerator rsaKeyPairGenerator;
 
             AESencryption aesEncryption = new AESencryption();
-            SecretKey aesKey = null;
+            SecretKey aesKey;
             String aesKeyString = "Empty";
             String encryptedAES = null;
             String decryptedAES = null;
@@ -77,16 +77,24 @@ public class RSAKeyPairGeneratorTest {
 
         @DisplayName("Successfully generate keys")
         @Test
-        public void successfullyGenerateKeys() throws NoSuchAlgorithmException {
-            RSAKeyPairGenerator rsaKeyPairGenerator = new RSAKeyPairGenerator();
-            rsaKeyPairGenerator.initKeys();
+        public void successfullyGenerateKeys() {
 
-            String public_key = rsaKeyPairGenerator.getPublicKey();
-            String private_key = rsaKeyPairGenerator.getPrivateKey();
 
-            Assertions.assertNotNull(public_key);
-            Assertions.assertNotNull(private_key);
+            RSAKeyPairGenerator rsaKeyPairGenerator;
+            String public_key = null;
+            String private_key = null;
+            try {
+                rsaKeyPairGenerator = new RSAKeyPairGenerator();
+                rsaKeyPairGenerator.initKeys();
+                public_key = rsaKeyPairGenerator.getPublicKey();
+                private_key = rsaKeyPairGenerator.getPrivateKey();
 
+            } catch (NoSuchAlgorithmException e) {
+                e.printStackTrace();
+            } finally {
+                Assertions.assertNotNull(public_key);
+                Assertions.assertNotNull(private_key);
+            }
         }
     }
 }
