@@ -2,7 +2,6 @@ package node;
 
 import cryptography.AESencryption;
 import cryptography.EncryptionManager;
-import model.Node;
 
 import javax.crypto.SecretKey;
 import java.io.BufferedReader;
@@ -11,7 +10,6 @@ import java.io.PrintWriter;
 import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.security.PublicKey;
 import java.util.Scanner;
 
 import static API.APIService.*;
