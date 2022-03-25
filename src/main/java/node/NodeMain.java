@@ -1,6 +1,6 @@
 package node;
 
-import cryptography.AESencryption;
+import cryptography.AESEncryption;
 import cryptography.EncryptionManager;
 
 import javax.crypto.SecretKey;
@@ -29,7 +29,7 @@ public class NodeMain {
         EncryptionManager encryptionManager = new EncryptionManager(publickey);
         encryptionManager.initFromStrings();
 
-        AESencryption aesEncryption = new AESencryption();
+        AESEncryption aesEncryption = new AESEncryption();
         SecretKey aesKey = aesEncryption.generateAESKey();
 
         System.out.println("Skriv inn portnummer til noden");

@@ -1,29 +1,24 @@
-import cryptography.AESencryption;
-import cryptography.EncryptionManager;
-import cryptography.RSAKeyPairGenerator;
+import cryptography.AESEncryption;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Nested;
-import javax.crypto.BadPaddingException;
-import javax.crypto.IllegalBlockSizeException;
-import javax.crypto.NoSuchPaddingException;
+
 import javax.crypto.SecretKey;
-import java.io.UnsupportedEncodingException;
-import java.security.InvalidKeyException;
-import java.security.NoSuchAlgorithmException;
 
-
+@DisplayName("Class for testing AESEncryption")
 public class AESencryptionTest {
+
+    @DisplayName("")
     @Nested
     class generateKeysTest {
-        @DisplayName("Successfully generate keys positive")
+
+        @DisplayName("Successfully generate keys")
         @Test
-        public void successfullyGenerateKeysPositive() {
+        public void successfullyGenerateKeys() {
             String secretAESkey = null;
             try {
-                AESencryption aeSencryption = new AESencryption();
+                AESEncryption aeSencryption = new AESEncryption();
 
                 secretAESkey = aeSencryption.convertSecretKeyToString(aeSencryption.generateAESKey());
 
@@ -39,7 +34,7 @@ public class AESencryptionTest {
 
     @Nested
     class encryptDecryptAES {
-        @DisplayName("Encrypt and decrypt with AES Positive")
+        @DisplayName("Encrypt and decrypt with AES")
         @Test
         public void encryptDecryptAESPositive() {
 
@@ -48,7 +43,7 @@ public class AESencryptionTest {
             String encryptedMessage = null;
 
             try {
-                AESencryption aesEncryption = new AESencryption();
+                AESEncryption aesEncryption = new AESEncryption();
                 SecretKey secretKey = aesEncryption.generateAESKey();
 
                 message = "This is a message";
@@ -72,7 +67,7 @@ public class AESencryptionTest {
             String decryptedMessage = "";
             String encryptedMessage = null;
             try {
-                AESencryption aesEncryption = new AESencryption();
+                AESEncryption aesEncryption = new AESEncryption();
                 SecretKey secretKey = aesEncryption.generateAESKey();
                 SecretKey secretKey1 = aesEncryption.generateAESKey();
 

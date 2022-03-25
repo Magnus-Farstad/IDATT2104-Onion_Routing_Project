@@ -9,7 +9,7 @@ import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
 
 
-public class AESencryption {
+public class AESEncryption {
 
     public SecretKey generateAESKey() throws NoSuchAlgorithmException {
         KeyGenerator kgen = KeyGenerator.getInstance("AES");

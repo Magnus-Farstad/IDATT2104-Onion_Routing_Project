@@ -1,4 +1,4 @@
-import cryptography.AESencryption;
+import cryptography.AESEncryption;
 import cryptography.RSAKeyPairGenerator;
 
 import javax.crypto.SecretKey;
@@ -22,7 +22,7 @@ public class Client {
         final RSAKeyPairGenerator keyPairGenerator = new RSAKeyPairGenerator();
         keyPairGenerator.initKeys();
         keyPairGenerator.initFromStrings(keyPairGenerator.getPublicKey(), keyPairGenerator.getPrivateKey());
-        AESencryption aeSencryption = new AESencryption();
+        AESEncryption aeSencryption = new AESEncryption();
 
         int responseCode = apiPOSTString("http://localhost:8080/postPublicKey", keyPairGenerator.getPublicKey());
         System.out.println(responseCode);
