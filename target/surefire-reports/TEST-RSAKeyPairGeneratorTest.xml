@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="RSAKeyPairGeneratorTest" time="1.152" tests="0" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="RSAKeyPairGeneratorTest" time="1.405" tests="0" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="16"/>
     <property name="sun.jnu.encoding" value="UTF-8"/>
@@ -12,7 +12,7 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="user.country" value="NO"/>
     <property name="sun.boot.library.path" value="/Library/Java/JavaVirtualMachines/jdk-16.0.2.jdk/Contents/Home/lib"/>
-    <property name="sun.java.command" value="/Users/Farstad/OneDrive/Skole/Andre_aar/Semester_4/Onion_Routing_Project/target/surefire/surefirebooter15398394608170815462.jar /Users/Farstad/OneDrive/Skole/Andre_aar/Semester_4/Onion_Routing_Project/target/surefire 2022-03-25T13-48-04_732-jvmRun1 surefire13053442564149478570tmp surefire_018084709853651212914tmp"/>
+    <property name="sun.java.command" value="/Users/Farstad/OneDrive/Skole/Andre_aar/Semester_4/Onion_Routing_Project/target/surefire/surefirebooter159428041011141211.jar /Users/Farstad/OneDrive/Skole/Andre_aar/Semester_4/Onion_Routing_Project/target/surefire 2022-03-25T14-03-26_798-jvmRun1 surefire648342118476272892tmp surefire_012084955099485923033tmp"/>
     <property name="http.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="jdk.debug" value="release"/>
     <property name="surefire.test.class.path" value="/Users/Farstad/OneDrive/Skole/Andre_aar/Semester_4/Onion_Routing_Project/target/test-classes:/Users/Farstad/OneDrive/Skole/Andre_aar/Semester_4/Onion_Routing_Project/target/classes:/Users/Farstad/.m2/repository/org/junit/jupiter/junit-jupiter-engine/5.8.2/junit-jupiter-engine-5.8.2.jar:/Users/Farstad/.m2/repository/org/junit/platform/junit-platform-engine/1.8.2/junit-platform-engine-1.8.2.jar:/Users/Farstad/.m2/repository/org/opentest4j/opentest4j/1.2.0/opentest4j-1.2.0.jar:/Users/Farstad/.m2/repository/org/junit/platform/junit-platform-commons/1.8.2/junit-platform-commons-1.8.2.jar:/Users/Farstad/.m2/repository/org/junit/jupiter/junit-jupiter-api/5.8.2/junit-jupiter-api-5.8.2.jar:/Users/Farstad/.m2/repository/org/apiguardian/apiguardian-api/1.1.2/apiguardian-api-1.1.2.jar:/Users/Farstad/.m2/repository/org/junit/jupiter/junit-jupiter/5.8.2/junit-jupiter-5.8.2.jar:/Users/Farstad/.m2/repository/org/junit/jupiter/junit-jupiter-params/5.8.2/junit-jupiter-params-5.8.2.jar:/Users/Farstad/.m2/repository/junit/junit/4.13.2/junit-4.13.2.jar:/Users/Farstad/.m2/repository/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar:"/>
@@ -28,7 +28,7 @@
     <property name="line.separator" value="&#10;"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
-    <property name="surefire.real.class.path" value="/Users/Farstad/OneDrive/Skole/Andre_aar/Semester_4/Onion_Routing_Project/target/surefire/surefirebooter15398394608170815462.jar"/>
+    <property name="surefire.real.class.path" value="/Users/Farstad/OneDrive/Skole/Andre_aar/Semester_4/Onion_Routing_Project/target/surefire/surefirebooter159428041011141211.jar"/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="java.runtime.version" value="16.0.2+7-67"/>
