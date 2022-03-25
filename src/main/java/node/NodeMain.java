@@ -16,14 +16,11 @@ import static API.APIService.*;
 
 public class NodeMain {
 
-    //private final static String PUBLIC_KEY = "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCbOoTJNXIUXkWu+lQFceNmAxgL/mxsC5cQGcmy8APaRblNqI9U/aXQ1kHp+Jv2KNKDhUACrHdRVpyCz7XSFNyLPvpOA2DAkhECvhQOGtcGeYIcdUIlHLv3tPIJfZw7WMhmYsWaRm/ITOT06MjUy9QKigxDzrxBF/i4mvR6ff+4VQIDAQAB";
-
-
     public static void main(String[] args) throws Exception {
-        Scanner leserFraKommandovindu = new Scanner(System.in);
-        System.out.println("Skriv inn addressen til serveren");
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Please write the address to the server: ");
 
-        String serverAddress = leserFraKommandovindu.nextLine();
+        String serverAddress = scanner.nextLine();
         String publickey = apiGETRequest("http://" + serverAddress + ":8080/getPublicKey");
 
         EncryptionManager encryptionManager = new EncryptionManager(publickey);
@@ -32,8 +29,8 @@ public class NodeMain {
         AESencryption aesEncryption = new AESencryption();
         SecretKey aesKey = aesEncryption.generateAESKey();
 
-        System.out.println("Skriv inn portnummer til noden");
-        String PORTNR = leserFraKommandovindu.nextLine();
+        System.out.println("Please write the portnumber to this node: ");
+        String PORTNR = scanner.nextLine();
 
         String nodeAddress = InetAddress.getLocalHost().getHostAddress();
 
@@ -45,53 +42,53 @@ public class NodeMain {
             System.out.println("The node was successfully stored\n");
         }
 
-        ServerSocket tjener = new ServerSocket(Integer.parseInt(PORTNR));
-        System.out.println("Logg for node. Nå venter vi...");
+        ServerSocket client = new ServerSocket(Integer.parseInt(PORTNR));
+        System.out.println("A Log for this node. Waiting...");
         System.out.println("-------------------------------\n");
-        Socket forbindelse = tjener.accept();
+        Socket connection = client.accept();
 
-        InputStreamReader leseforbindelse = new InputStreamReader(forbindelse.getInputStream());
-        BufferedReader leseren = new BufferedReader(leseforbindelse);
-        PrintWriter skriveren = new PrintWriter(forbindelse.getOutputStream(), true);
+        InputStreamReader readerConnection = new InputStreamReader(connection.getInputStream());
+        BufferedReader reader = new BufferedReader(readerConnection);
+        PrintWriter writer = new PrintWriter(connection.getOutputStream(), true);
 
 
-        String encryptedMessage = leseren.readLine();
-        System.out.println("Leser inn melding..." + encryptedMessage + "\n" );
+        String encryptedMessage = reader.readLine();
+        System.out.println("Reading message..." + encryptedMessage + "\n" );
 
         String decryptedData = aesEncryption.decrypt(encryptedMessage, aesKey);
-        System.out.println("Dekrypterer melding..." + decryptedData + "\n");
+        System.out.println("Decrypting message..." + decryptedData + "\n");
 
 
         if (decryptedData.contains(",")) {
 
             String[] nextNode = decryptedData.split(",");
 
-            Socket forbindelse2 = new Socket(nextNode[2], Integer.parseInt(nextNode[1]));
-            InputStreamReader leseforbindelse2 = new InputStreamReader(forbindelse2.getInputStream());
-            BufferedReader leseren2 = new BufferedReader(leseforbindelse2);
-            PrintWriter skriveren2 = new PrintWriter(forbindelse2.getOutputStream(), true);
+            Socket connectionNext = new Socket(nextNode[2], Integer.parseInt(nextNode[1]));
+            InputStreamReader readerConnectionNext = new InputStreamReader(connectionNext.getInputStream());
+            BufferedReader readerNext = new BufferedReader(readerConnectionNext);
+            PrintWriter writerNext = new PrintWriter(connectionNext.getOutputStream(), true);
 
             String message = nextNode[0];
             while(!message.equals("")){
-                skriveren2.println(message);
-                System.out.println("Sender melding videre... " + message + "\n");
+                writerNext.println(message);
+                System.out.println("Sending message to next node... " + message + "\n");
 
-                String messageFromNext = leseren2.readLine();
-                System.out.println("Får tilbake svar... " + messageFromNext + "\n");
+                String messageFromNext = readerNext.readLine();
+                System.out.println("Received respons... " + messageFromNext + "\n");
 
                 String encryptedMesageBack = aesEncryption.encrypt(messageFromNext, aesKey);
 
-                skriveren.println(encryptedMesageBack);
-                System.out.println("Krypterer og sender videre..." + encryptedMesageBack + "\n\n");
+                writer.println(encryptedMesageBack);
+                System.out.println("Encrypting and sending back..." + encryptedMesageBack + "\n\n");
 
-                encryptedMessage = leseren.readLine();
-                System.out.println("Logg for node. Nå venter vi...");
-                System.out.println("--------------------------------\n");
+                encryptedMessage = reader.readLine();
+                System.out.println("A Log for this node. Waiting...");
+                System.out.println("-------------------------------\n");
 
-                System.out.println("Leser inn melding..." + encryptedMessage + "\n" );
+                System.out.println("Reading message..." + encryptedMessage + "\n" );
 
                 decryptedData = aesEncryption.decrypt(encryptedMessage, aesKey);
-                System.out.println("Dekrypterer melding..." + decryptedData + "\n");
+                System.out.println("Decrypting message..." + decryptedData + "\n");
 
                 nextNode = decryptedData.split(",");
                 message = nextNode[0];
@@ -100,31 +97,30 @@ public class NodeMain {
         } else {
 
             while(!decryptedData.equals("")){
-                System.out.println("Sender melding til server..." + decryptedData + "\n");
+                System.out.println("Sending message to server..." + decryptedData + "\n");
                 apiPOSTString("http://" + serverAddress + ":8080/postMessage", decryptedData);
 
                 String message = apiGETRequest("http://" + serverAddress + ":8080/getMessage");
-                System.out.println("Henter respons fra serveren... " + message + "\n");
+                System.out.println("Receiving response from server... " + message + "\n");
 
                 String encryptedMesageBack = aesEncryption.encrypt(message, aesKey);
-                System.out.println("Krypter meldingen, og sender tilbake... " + encryptedMesageBack + "\n\n");
-                skriveren.println(encryptedMesageBack);
+                System.out.println("Encrypting message, and sends it back... " + encryptedMesageBack + "\n\n");
+                writer.println(encryptedMesageBack);
 
+                encryptedMessage = reader.readLine();
+                System.out.println("A Log for this node. Waiting...");
+                System.out.println("-------------------------------\n");
 
-                encryptedMessage = leseren.readLine();
-                System.out.println("Logg for node. Nå venter vi...");
-                System.out.println("--------------------------------\n");
-
-                System.out.println("Leser inn melding..." + encryptedMessage + "\n");
+                System.out.println("Reading message..." + encryptedMessage + "\n");
 
                 decryptedData = aesEncryption.decrypt(encryptedMessage, aesKey);
-                System.out.println("Dekrypterer melding..." + decryptedData + "\n");
+                System.out.println("Decrypting message..." + decryptedData + "\n");
             }
         }
 
-        /* Lukker forbindelsen */
-        leseren.close();
-        skriveren.close();
-        forbindelse.close();
+        /* Closing connection */
+        reader.close();
+        writer.close();
+        connection.close();
     }
 }
