@@ -64,16 +64,16 @@ public class Client {
             }
 
             writer.println(encryptedMessage);
-            System.out.println("Sender kryptert melding..." + encryptedMessage + "\n");
+            System.out.println("Sending encrypted message..." + encryptedMessage + "\n");
 
             String respons = reader.readLine();
-            System.out.println("Får respons..." + respons + "\n");
+            System.out.println("Received response..." + respons + "\n");
 
             for(int i = 0; i < list.length; i++ ){
                 respons = aeSencryption.decrypt(respons, keys.get(i));
             }
 
-            System.out.println("Dekrypterer respons og får..." + respons + "\n");
+            System.out.println("Decrypting response..." + respons + "\n");
 
             encryptedMessage = scanner.nextLine();
         }
