@@ -65,7 +65,6 @@ public class RSAKeyPairGeneratorTest {
                 Assertions.assertEquals(aesKeyString, decryptedAES);
             }
 
-
             Assertions.assertNotEquals(aesKeyString, encryptedAES);
             Assertions.assertEquals(aesKeyString, decryptedAES);
         }
