@@ -33,13 +33,16 @@ Løsning illustrert i bilder:
 
 
 :two: Noder kobler seg på server og henter ut den offentlige nøkkelen til klienten. Brukes så til å kryptere AES nøkkelen til påkoblede noder.
+
 ![Bilde 24 03 2022 klokken 20 23 (1)](https://user-images.githubusercontent.com/91839835/159998612-c936e193-3ed4-455b-bc5e-a168c6629dfb.jpg)
 
 
 :three: Nodene sender tilbake portnummer, adresse og kryptere AES nøkler til server 
+
 ![Bilde 25 03 2022 klokken 15 21](https://user-images.githubusercontent.com/91839835/160139091-17f29fee-6039-40f2-b1f6-d709ed3967de.jpg)
 
 :four: Klient henter ut nodene fra server og bruker dette til å lage en rute av noder, samt kryptere en melding lag for lag med AES nøkkelen fra hver av nodene. Deretter blir melding og adresse kryptert i x antall lag og sendt til de ulike nodene hvor de blir dekryptert lag for lag ved ankomst. Når meldingen ankommer siste node gjøres et api kall til den gitte adressen fra klienten.
+
 ![Bilde 24 03 2022 klokken 20 23](https://user-images.githubusercontent.com/91839835/159998647-b62e589f-767e-4653-a049-3780b524a5f1.jpg)
 
 ![Bilde 24 03 2022 klokken 20 24](https://user-images.githubusercontent.com/91839835/159998678-b71acf52-e792-4982-88c5-76366a14ea99.jpg)
