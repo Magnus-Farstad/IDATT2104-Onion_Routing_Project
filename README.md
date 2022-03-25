@@ -1,8 +1,8 @@
 # Onion Routing 🧅
+![Java CI with Maven](https://github.com/Magnus-Farstad/IDATT2104-Onion_Routing_Project/actions/workflows/maven.yml/badge.svg)
+
 
  Dette er et frivillig prosjekt i IDATT2104- Nettverksprogrammering for å forbedre karakteren i faget 😏
- 
- Lenke til siste continuous integration/deployment kjøring: [CI/CD](https://github.com/mariusklemp/OnionRouterREST) !
 
 ## Oppgave
 
