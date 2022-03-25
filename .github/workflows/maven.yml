@@ -33,3 +33,16 @@ jobs:
           distribution: 'adopt'
       - name: Build with Maven
         run: mvn --batch-mode --update-snapshots verify
+
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Deploy Project
+        uses: actions/deploy-java@v2
+        with:
+          java-version: '16'
+          distribution: 'adopt'
+        - name: Deploy with Maven
+          run: mvn --batch-mode deploy
