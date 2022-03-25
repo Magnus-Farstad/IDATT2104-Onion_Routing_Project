@@ -44,7 +44,8 @@ Løsning illustrert i bilder:
 
 ![Bilde 24 03 2022 klokken 20 24](https://user-images.githubusercontent.com/91839835/159998678-b71acf52-e792-4982-88c5-76366a14ea99.jpg)
 
-:five: Respons fra server blir nå kryptert et lag for hver node den ankommer, og til slutt vil klient dekryptere alle lagene med AES nøklene den har tilgjengelig.
+:five: Respons fra server vil nå bli sendt tilbake til klient ved at den blir kryptert et lag for hver node den ankommer, og ved ankomst hos klient vil alle lagene i meldingen bli dekryptert med AES nøklene til alle nodene den har tilgjengelig.
+![Bilde 25 03 2022 klokken 15 21](https://user-images.githubusercontent.com/91839835/160139091-17f29fee-6039-40f2-b1f6-d709ed3967de.jpg)
 
 
 
