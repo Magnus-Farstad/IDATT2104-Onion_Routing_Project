@@ -65,13 +65,28 @@ Videre utvikling vil bestå av å gjøre løsningen mer dynamisk ved at noder bl
 Kort beskrivelse av hver avhengighet. Hva er egentlig våre avhengigheter?
 
 
+## Installasjon
+
+For å kjøre programmet, må de kjørbare filene lastes ned.
+Trykk på linkene for å laste ned.
+
+- [Klient](https://github.com/Magnus-Farstad/IDATT2104-Onion_Routing_Project/releases/download/v1.0.0/Onion-Routing-Client.jar)
+- [Node](https://github.com/Magnus-Farstad/IDATT2104-Onion_Routing_Project/releases/download/v1.0.0/Onion-Routing-Node.jar)
+- [Server](https://github.com/Magnus-Farstad/IDATT2104-Onion_Routing_Project/releases/download/v1.0.0/Onion-Routing-Server.jar)
+
 ## Installasjon/Instruksjon 🗃️
 
 For å kune kjøre programmet vårt kreves det:
 
 ### Steg 1 - Start Spring-boot server:
 
+- Naviger til mappen der filene ble lagret etter nedlastingen.
 - Kjør ekstern spring-boot server ved å kjøre kommando:
+```
+java -jar Onion-Routing-Server.jar
+```
+- Eventuelt kan man navigere til selve prosjekt-mappen og kjøre kommandoen:
+
 ```bash
 mvn spring-boot:run 
 ```
@@ -80,19 +95,31 @@ mvn spring-boot:run
 
 ### Steg 2 - Kjør Client:
 
-- Kjør Client og send med en IP- adresse til tilhørende Rest server 
+- Kjør Client og send med en Public Key til tilhørende Rest server.
+- For å gjøre dette, naviger til filkatalogen der klient-filen ble lagret. Bruk så kommandoen:
+```
+java -jar Onion-Routing-Client.jar
+```
+NB! Det er viktig at serveren kjører først, da klienten automatisk kobler seg til serveren.
 
 - Nå er klientens offentlige nøkkel lagret i server slik at fremtidige aktive naboer kan hente ut denne
 
-- Klienten vil nå vente på at noder kobler seg opp på server og deretter hente dem ut. Klienten vil vente i 20 sekunder før den henter ut nøklene. På denne måten kan man velge hvor mange noder som skal være med i systemet.
+- Klienten vil nå vente på at noder kobler seg opp på server og deretter hente dem ut. 
+NB! Klienten vil vente i 20 sekunder før den henter ut nøklene. På denne måten kan man velge hvor mange noder som skal være med i systemet. Det kan derfor være en idé å ha kommandoene klare for å kjøre nodene. Rekker man ikke å kjøre en node vil ikke denne gjøre noe.
 
 
 
 ### Steg 3 - Kjør NodeMain:
 
-- Kjør NodeMain og send med en IP- adresse til tilhørende Rest server og portnummer hvor videre kommunikasjon skal foregå.
+- Kjør Node, spesifiser adresse til serveren og hvilket portnummer du ønsker at denne noden skal ha.
+- For å kjøre, naviger til filkatalogen der server-filen ble lagret. Bruk så kommandoen:
+```
+java -jar Onion-Routing-Node.jar
+```
+Om serveren kjører på samme maskin kan 'localhost' brukes som adresse. Hvis serveren kjører på en annen adresse, må din maskin være på samme subnett som serveren. Da må serveren sin lokale IPv4 sendes som adresse.
 
-- Nå er en node koblet opp til Rest server og hentet ut den offentlige asymetriske (RSA) nøkkelen til klienten slik at AES nøklene blir kryptert
+- Nå er en node koblet opp til Rest server og hentet ut den offentlige asymetriske (RSA) nøkkelen til klienten slik at AES nøklene kan krypteres med denne.
+- Deretter vil noden sende den krypterte AES-nøkkelen tilbake til serverern, som så vil sende denne tilbake til klienten. Hos klienten vil nøkkelen bli dekryptert.
 
 - Man har også gitt klient tilgang på alle aktive noder sine kryptere nøkler, samt portnummere.
 
@@ -100,6 +127,7 @@ mvn spring-boot:run
 ### Steg 4 - Handling:
 
 - Nå gjenstår det bare å sende meldinger kryptert fra klient !
+NB! Bare engelske bokstaver er støttet foreløpig (æ, ø og å vil ikke fungere som man vil)
 
 
 ### Ved feilmelding
