@@ -8,26 +8,27 @@
 
 ## Oppgave
 
-Oppgaven besto i å lage en onion router. Løsningen består av to prosjekter, IDATT2104-Onion_Routing_Project og OnionRouterREST.
-IDATT2104-Onion_Routing_Project inneholder klient, klasser for kryptering og selve nodene.
-OnionRouterREST er serveren som mottar portnummere, adresser og nøkler, for så å dele disse ut til klient og noder. Link til dette prosjektet finnes nederst i README-filen.
-
+Oppgaven besto i å lage en onion router. 
 
 
 ## Løsning 📝
 
+**generell info:**
 - Utviklingspråk: Java
 
-- Består av en klient samt et nettverk av noder som blir holdt styr på av en Rest server 
+- Løsningen består av to prosjekter: **IDATT2104-Onion_Routing_Project** og **OnionRouterREST**.
 
-- Rest server sin oppgave er å fordele klientens offentlige nøkkel til de ulike aktive nodene, samt sende nodenes portnummer, adresse og krypterte AES nøkkel til klienten slik at det opprettes en rute av noder.  
+- **IDATT2104-Onion_Routing_Project** inneholder klient, klasser for kryptering og selve nodene.
+
+- **OnionRouterREST** er en REST server som mottar portnummere, adresser og nøkler, for så å dele disse ut til klient og noder. 
+(Link til dette prosjektet finnes nederst i README-filen).
 
 - For kryptering brukes både RSA og AES. RSA for kryptering av AES nøkler, og AES for sending av lag-kryptert melding. 
 
 - Klienten kan sende en melding som går gjennom x antall noder, vise til en API server og motta et svar i form av en string.
 
 
-Løsning illustrert i bilder:
+**Detaljer:**
 
 :one: Klient sender public key til server.
 
@@ -43,7 +44,7 @@ Løsning illustrert i bilder:
 
 ![Bilde 25 03 2022 klokken 15 21](https://user-images.githubusercontent.com/91839835/160139091-17f29fee-6039-40f2-b1f6-d709ed3967de.jpg)
 
-:four: Klient henter ut nodene fra server og bruker dette til å lage en rute av noder, samt kryptere en melding lag for lag med AES nøkkelen fra hver av nodene. Deretter blir melding og adresse kryptert i x antall lag og sendt til de ulike nodene hvor de blir dekryptert lag for lag ved ankomst. Når meldingen ankommer siste node gjøres et api kall til den gitte adressen fra klienten.
+:four: Klient henter ut nodene fra server og bruker dette til å lage en rute av noder, samt kryptere en melding lag for lag med AES nøkkelen fra hver av nodene. Deretter blir melding sendt til de ulike nodene hvor de blir dekryptert lag for lag ved ankomst. Når meldingen ankommer siste node gjøres et api kall til den gitte adressen fra klienten.
 
 ![Bilde 24 03 2022 klokken 20 23](https://user-images.githubusercontent.com/91839835/159998647-b62e589f-767e-4653-a049-3780b524a5f1.jpg)
 
@@ -96,13 +97,9 @@ mvn spring-boot:run
 - Man har også gitt klient tilgang på alle aktive noder sine kryptere nøkler, samt portnummere.
 
 
-
-
-
-
 ### Steg 4 - Handling:
 
-- Nå gjenstår det bare å sende meldinger kryptert !
+- Nå gjenstår det bare å sende meldinger kryptert fra klient !
 
 
 ### Ved feilmelding
@@ -115,7 +112,7 @@ mvn clean install
 
 ## Tester
 
-Vi har tatt i bruk JUnit tester i backend for å gjøre kritisk funksjonalitet stabil. Vi har ikke fokusert på testing i Rest API server, men det mest essensielle er testet.
+Vi har tatt i bruk JUnit tester i backend for sikre at kritisk funksjonalitet fungerer. Vi har ikke fokusert på testing i Rest API server, likevel er det mest essensielle testet.
 
 For å kjøre tester kan denne kommandoen brukes:
 ```
