@@ -8,7 +8,9 @@
 
 ## Oppgave
 
-Implementer onion routing enten som programvare eller programvarebibliotek i et valgfritt programmeringsspråk
+Oppgaven besto i å lage en onion router. Løsningen består av to prosjekter, IDATT2104-Onion_Routing_Project og OnionRouterREST.
+IDATT2104-Onion_Routing_Project inneholder klient, klasser for kryptering og selve nodene.
+OnionRouterREST er serveren som mottar portnummere, adresser og nøkler, for så å dele disse ut til klient og noder. Link til dette prosjektet finnes nederst i README-filen.
 
 
 
@@ -72,6 +74,7 @@ For å kune kjøre programmet vårt kreves det:
 ```bash
 mvn spring-boot:run 
 ```
+- NB! Denne kommandoen kjøres i Spring-Boot REST API-prosjektet. Denne er linket til nederst i README-filen.
 - Nå venter server på forespørsler fra noder
 
 ### Steg 2 - Kjør Client:
@@ -102,12 +105,23 @@ mvn spring-boot:run
 - Nå gjenstår det bare å sende meldinger kryptert !
 
 
+### Ved feilmelding
+
+- Ved eventuelle feilmeldinger kan det være nødvendig å kjøre:
+```
+mvn clean install
+```
 
 
 ## Tester
 
 Vi har tatt i bruk JUnit tester i backend for å gjøre kritisk funksjonalitet stabil. Vi har ikke fokusert på testing i Rest API server, men det mest essensielle er testet.
 
+For å kjøre tester kan denne kommandoen brukes:
+```
+mvn clean test
+```
+Dette kan gjøres i både Spring-Boot REST API-serveren og i Onion_Routing_Project
 
 ## API 📡
 
