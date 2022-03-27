@@ -40,7 +40,7 @@ Oppgaven besto i å lage en onion router.
 ![Bilde 24 03 2022 klokken 20 23 (1)](https://user-images.githubusercontent.com/91839835/159998612-c936e193-3ed4-455b-bc5e-a168c6629dfb.jpg)
 
 
-:three: Nodene sender tilbake portnummer, adresse og kryptere AES nøkler til server 
+:three: Nodene sender tilbake portnummer, adresse og krypterte AES nøkler til server 
 
 ![Bilde 25 03 2022 klokken 15 21](https://user-images.githubusercontent.com/91839835/160139091-17f29fee-6039-40f2-b1f6-d709ed3967de.jpg)
 
