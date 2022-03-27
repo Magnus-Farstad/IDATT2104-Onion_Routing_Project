@@ -153,7 +153,9 @@ Dette kan gjøres i både Spring-Boot REST API-serveren og i Onion_Routing_Proje
 Besøk vår Rest server [Node Rest API](https://github.com/mariusklemp/OnionRouterREST) !
 
 
+## Dokumentasjon
 
+Lenke til dokumentasjon: [JavaDoc](https://magnus-farstad.github.io/IDATT2104-Onion_Routing_Project/)
   
                                  
 
