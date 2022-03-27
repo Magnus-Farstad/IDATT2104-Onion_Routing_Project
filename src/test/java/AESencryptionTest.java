@@ -9,7 +9,7 @@ import javax.crypto.SecretKey;
 @DisplayName("Class for testing AESEncryption")
 public class AESencryptionTest {
 
-    @DisplayName("")
+    @DisplayName("Generate AES key")
     @Nested
     class GenerateKey {
 
@@ -32,6 +32,7 @@ public class AESencryptionTest {
         }
     }
 
+    @DisplayName("Tests for encrypting and decrypting with AES key")
     @Nested
     class EncryptDecryptAES {
 
