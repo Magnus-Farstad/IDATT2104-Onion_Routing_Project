@@ -93,12 +93,12 @@ mvn spring-boot:run
 - NB! Denne kommandoen kjøres i Spring-Boot REST API-prosjektet. Denne er linket til nederst i README-filen.
 - Nå venter server på forespørsler fra noder
 
-### Steg 2 - Kjør Client:
+### Steg 2 - Kjør client.Client:
 
-- Kjør Client og send med en Public Key til tilhørende Rest server.
+- Kjør client.Client og send med en Public Key til tilhørende Rest server.
 - For å gjøre dette, naviger til filkatalogen der klient-filen ble lagret. Bruk så kommandoen:
 ```
-java -jar Onion-Routing-Client.jar
+java -jar Onion-Routing-client.Client.jar
 ```
 NB! Det er viktig at serveren kjører først, da klienten automatisk kobler seg til serveren.
 

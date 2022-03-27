@@ -4,5 +4,4 @@ out
 .idea
 RSA
 target
-
-resources
+/src/main/resources/
