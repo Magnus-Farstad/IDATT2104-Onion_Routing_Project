@@ -156,6 +156,7 @@ Besøk vår Rest server [Node Rest API](https://github.com/mariusklemp/OnionRout
 ## Dokumentasjon
 
 Lenke til dokumentasjon: [JavaDoc](https://magnus-farstad.github.io/IDATT2104-Onion_Routing_Project/)
+Dokumentasjon for klient: [Klient](https://magnus-farstad.github.io/IDATT2104-Onion_Routing_Project/docs/client/Client.html)
   
                                  
 
