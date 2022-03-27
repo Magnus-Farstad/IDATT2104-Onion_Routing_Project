@@ -8,7 +8,7 @@
 
 ## Oppgave
 
-Oppgaven besto i å lage en onion router. 
+Oppgaven besto i å utvikle The Onion Router. 
 
 
 ## Løsning 📝
