@@ -11,32 +11,33 @@ public class AESencryptionTest {
 
     @DisplayName("")
     @Nested
-    class generateKeysTest {
+    class GenerateKey {
 
-        @DisplayName("Successfully generate keys")
+        @DisplayName("Successfully generate AES key")
         @Test
-        public void successfullyGenerateKeys() {
-            String secretAESkey = null;
+        public void successfullyGenerateKey() {
+
+            String secretAESKey = null;
             try {
                 AESEncryption aeSencryption = new AESEncryption();
 
-                secretAESkey = aeSencryption.convertSecretKeyToString(aeSencryption.generateAESKey());
-
+                secretAESKey = aeSencryption.convertSecretKeyToString(aeSencryption.generateAESKey());
 
             } catch (Exception exception) {
                 System.out.println(exception.getMessage());
             }
             finally {
-                Assertions.assertNotNull(secretAESkey);
+                Assertions.assertNotNull(secretAESKey);
             }
         }
     }
 
     @Nested
-    class encryptDecryptAES {
-        @DisplayName("Encrypt and decrypt with AES")
+    class EncryptDecryptAES {
+
+        @DisplayName("Successfully encrypt and decrypt with AES")
         @Test
-        public void encryptDecryptAESPositive() {
+        public void successfullyEncryptDecryptAES() {
 
             String message = null;
             String decryptedMessage = "";
@@ -59,9 +60,9 @@ public class AESencryptionTest {
             }
         }
 
-        @DisplayName("Encrypt and decrypt with AES Negative")
+        @DisplayName("Unsuccessfully encrypt and decrypt with AES")
         @Test
-        public void encryptDecryptAESNegative() { //Denne er enda ikke gjort negativ!
+        public void UnsuccessfullyEncryptDecryptAES() {
 
             String message = null;
             String decryptedMessage = "";

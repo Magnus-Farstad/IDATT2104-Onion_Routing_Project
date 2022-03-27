@@ -95,7 +95,7 @@ public class RSAKeyPairGenerator {
 
      */
 
-    private String encode(byte[] data) {
+    public String encode(byte[] data) {
         return Base64.getEncoder().encodeToString(data);
     }
 
@@ -120,7 +120,7 @@ public class RSAKeyPairGenerator {
 //        throw new RuntimeException("Decryption failed");
 //    }
 
-    private byte[] decode(String data) {
+    public byte[] decode(String data) {
         return Base64.getDecoder().decode(data);
     }
 
@@ -147,7 +147,7 @@ public class RSAKeyPairGenerator {
         return encode(publicKey.getEncoded());
     }
 
-    public static void main(String[] args) throws NoSuchAlgorithmException, IOException, IllegalBlockSizeException, NoSuchPaddingException, BadPaddingException, InvalidKeyException {
+    public static void main(String[] args) throws NoSuchAlgorithmException{
         RSAKeyPairGenerator keyPairGenerator = new RSAKeyPairGenerator();
 
         keyPairGenerator.initKeys();
