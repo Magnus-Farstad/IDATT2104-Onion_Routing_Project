@@ -30,6 +30,7 @@ public class Client {
 
         Scanner scanner = new Scanner(System.in);
 
+        System.out.println("Waiting for nodes to connect...");
         TimeUnit.SECONDS.sleep(20);
         String response = apiGETRequest("http://localhost:8080/getNodes");
 
@@ -53,9 +54,10 @@ public class Client {
         BufferedReader reader = new BufferedReader(readerConnection);
         PrintWriter writer = new PrintWriter(connection.getOutputStream(), true);
 
-
+        System.out.println("You can now write a message...");
         String text = scanner.nextLine();
         String encryptedMessage = text;
+
         while (!text.equals("")) {
             encryptedMessage = aeSencryption.encrypt(encryptedMessage,keys.get(list.length-1));
             for(int i= list.length-1; i > 0; i--){
