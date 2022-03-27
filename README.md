@@ -54,7 +54,7 @@ Løsning illustrert i bilder:
 
 ## Videre utvikling 🏗️
 
-Videre utvikling vil bestå av å gjøre løsningen mer dynamisk ved at noder blir laget fortløpende...
+Videre utvikling vil bestå av å gjøre løsningen mer dynamisk ved at noder blir laget fortløpende.
 
 
 ## Eksterne avhengigheter
@@ -80,7 +80,7 @@ mvn spring-boot:run
 
 - Nå er klientens offentlige nøkkel lagret i server slik at fremtidige aktive naboer kan hente ut denne
 
-- Klienten vil nå vente på at noder kobler seg opp på server og deretter hente dem ut
+- Klienten vil nå vente på at noder kobler seg opp på server og deretter hente dem ut. Klienten vil vente i 20 sekunder før den henter ut nøklene. På denne måten kan man velge hvor mange noder som skal være med i systemet.
 
 
 
@@ -90,7 +90,7 @@ mvn spring-boot:run
 
 - Nå er en node koblet opp til Rest server og hentet ut den offentlige asymetriske (RSA) nøkkelen til klienten slik at AES nøklene blir kryptert
 
-- Man har også gitt klient tilgang på alle aktive noder sine kryptere nøkler, samt portnumere
+- Man har også gitt klient tilgang på alle aktive noder sine kryptere nøkler, samt portnummere.
 
 
 
@@ -106,7 +106,7 @@ mvn spring-boot:run
 
 ## Tester
 
-Vi har tatt i bruk JUnit tester i backend for å gjøre kritisk funksjonalitet stabil. Vi har ikke fokusert på testing i Rest API server.
+Vi har tatt i bruk JUnit tester i backend for å gjøre kritisk funksjonalitet stabil. Vi har ikke fokusert på testing i Rest API server, men det mest essensielle er testet.
 
 
 ## API 📡
