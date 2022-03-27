@@ -16,7 +16,7 @@ import static API.APIService.*;
 
 /**
  * A class that represents a node
- * Retrieves public key from client to encrypt EAS keys
+ * Retrieves public key from client to encrypt AES keys
  * Post its data to REST server
  * Waiting for message from client and decrypts it
  * finds next node if the message still contains (,)

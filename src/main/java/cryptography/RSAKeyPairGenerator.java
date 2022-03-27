@@ -36,7 +36,7 @@ public class RSAKeyPairGenerator {
    }
 
    /**
-     * A method for generating RSA key pair
+     * A method for generating a pair of RSA keys - public and private
      * It uses classes and methods from the javax.crypto package.
      * @throws NoSuchAlgorithmException
      */
@@ -68,9 +68,9 @@ public class RSAKeyPairGenerator {
     }
 
     /**
-     * A method to encode bytes array to an encoded String
+     * A method to transform bytes array to an encoded String
      * Using Base64
-     * @param data
+     * @param data the data that is being encoded
      * @return returns the encoded data
      */
 
@@ -90,10 +90,10 @@ public class RSAKeyPairGenerator {
     }
 
     /**
-     * A method for encrypting a String to another encrypted String
+     * A method for encrypting a String
      * Uses a generated public RSA key to encrypt
      * Uses the method "encode" to transform the encrypted byte message to a String
-     * @param data
+     * @param data the data that is being encrypted
      * @return returns the encrypted message
      * @throws BadPaddingException
      * @throws IllegalBlockSizeException
@@ -109,53 +109,9 @@ public class RSAKeyPairGenerator {
         return encode(encryptedMessage);
     }
 
-//    public byte[] encryptObject(Payload payload) throws BadPaddingException, IllegalBlockSizeException, InvalidKeyException, NoSuchPaddingException, NoSuchAlgorithmException {
-//        Cipher cipher = Cipher.getInstance("RSA/ECB/PKCS1Padding");
-//        cipher.init(Cipher.ENCRYPT_MODE, publicKey);
-//        try (ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-//            ObjectOutputStream objectOutputStream = new ObjectOutputStream(outputStream)) {
-//
-//            objectOutputStream.writeObject(payload);
-//            System.out.println(outputStream.toByteArray().length);
-//            return cipher.doFinal(outputStream.toByteArray());
-//        } catch (Exception exception) {
-//            System.out.println("Kryptering av objekt feilet");
-//            exception.printStackTrace();
-//            return null;
-//        }
-//    }
-
-    /*
-    public byte [] serializeObject(Payload payload) {
-        try (ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-             ObjectOutputStream objectOutputStream = new ObjectOutputStream(byteArrayOutputStream)) {
-
-            objectOutputStream.writeObject(payload);
-            System.out.println();
-            return byteArrayOutputStream.toByteArray();
-        } catch (Exception exception) {
-            System.out.println("Kryptering av objekt feilet");
-            exception.printStackTrace();
-        }
-        throw new RuntimeException("Objekt til bytes feilet");
-    }
-
-    public Payload deserializeObject(byte[] bytes) {
-        InputStream inputStream = new ByteArrayInputStream(bytes);
-        try (ObjectInputStream objectInputStream = new ObjectInputStream(inputStream)) {
-            return (Payload) objectInputStream.readObject();
-        } catch (Exception exception) {
-            System.out.println(exception.getMessage());
-        }
-        throw new RuntimeException("Bytes til objekt feilet");
-    }
-
-     */
-
-
     /**
      * A method that decrypts an encrypted String
-     * Uses the method "decode" to ...
+     * Uses the method "decode" to decode a string to bytes
      * @param encryptedMessage
      * @return returns a decrypted String
      * @throws InvalidKeyException
@@ -173,20 +129,6 @@ public class RSAKeyPairGenerator {
         return new String(decryptedMessage, "UTF8");
     }
 
-//    public Payload decryptObject(byte[] encryptedMessage) throws InvalidKeyException, NoSuchPaddingException, NoSuchAlgorithmException, IllegalBlockSizeException, BadPaddingException, UnsupportedEncodingException {
-//        Cipher cipher = Cipher.getInstance("RSA/ECB/PKCS1Padding");
-//        cipher.init(Cipher.DECRYPT_MODE, privateKey);
-//        byte[] decryptedBytes = cipher.doFinal(encryptedMessage);
-//
-//        InputStream inputStream = new ByteArrayInputStream(decryptedBytes);
-//        try (ObjectInputStream objectInputStream = new ObjectInputStream(inputStream)) {
-//            return (Payload) objectInputStream.readObject();
-//        } catch (Exception exception) {
-//            System.out.println(exception.getMessage());
-//        }
-//        throw new RuntimeException("Decryption failed");
-//    }
-
     /**
      * A method that prints out the RSA key pair to terminal
      */
@@ -196,15 +138,6 @@ public class RSAKeyPairGenerator {
         System.out.println("Private key: " + encode(privateKey.getEncoded()));
     }
 
-//    public void writeToFile(String path, byte[] key) throws IOException {
-//        File f = new File(path);
-//        f.getParentFile().mkdirs();
-//
-//        FileOutputStream fos = new FileOutputStream(f);
-//        fos.write(key);
-//        fos.flush();
-//        fos.close();
-//    }
 
     /**
      * A method that retrieves the private key
@@ -233,10 +166,5 @@ public class RSAKeyPairGenerator {
 
         keyPairGenerator.initKeys();
         keyPairGenerator.printKeys();
-
-//        keyPairGenerator.writeToFile("RSA/publicKey", keyPairGenerator.getPublicKey().getEncoded());
-//        keyPairGenerator.writeToFile("RSA/privateKey", keyPairGenerator.getPrivateKey().getEncoded());
-//        System.out.println(Base64.getEncoder().encodeToString(keyPairGenerator.getPublicKey().getEncoded()));
-//        System.out.println(Base64.getEncoder().encodeToString(keyPairGenerator.getPrivateKey().getEncoded()));
     }
 }

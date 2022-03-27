@@ -43,6 +43,7 @@ public class Client {
         //Retrieves node data from REST server
         System.out.println("Waiting for nodes to connect...");
         TimeUnit.SECONDS.sleep(20);
+
         //Retrieves data from active nodes
         String response = apiGETRequest("http://localhost:8080/getNodes");
 
