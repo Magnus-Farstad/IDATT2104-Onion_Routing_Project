@@ -35,9 +35,7 @@ public class RSAKeyPairGenerator {
 
    }
 
-
-
-    /**
+   /**
      * A method for generating RSA key pair
      * It uses classes and methods from the javax.crypto package.
      * @throws NoSuchAlgorithmException

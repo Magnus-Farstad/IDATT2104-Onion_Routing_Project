@@ -14,6 +14,15 @@ import java.util.Scanner;
 
 import static API.APIService.*;
 
+/**
+ * A class that represents a node
+ * Retrieves public key from client to encrypt EAS keys
+ * Post its data to REST server
+ * Waiting for message from client and decrypts it
+ * finds next node if the message still contains (,)
+ * If not encrypts message and sends back to another node
+ */
+
 public class NodeMain {
 
     public static void main(String[] args) throws Exception {
@@ -50,7 +59,6 @@ public class NodeMain {
         InputStreamReader readerConnection = new InputStreamReader(connection.getInputStream());
         BufferedReader reader = new BufferedReader(readerConnection);
         PrintWriter writer = new PrintWriter(connection.getOutputStream(), true);
-
 
         String encryptedMessage = reader.readLine();
         System.out.println("Reading message..." + encryptedMessage + "\n" );
