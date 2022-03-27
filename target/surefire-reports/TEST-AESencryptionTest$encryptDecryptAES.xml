@@ -1,62 +1,61 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="AESencryptionTest$encryptDecryptAES" time="0.031" tests="2" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="AESencryptionTest$EncryptDecryptAES" time="0.009" tests="2" errors="0" skipped="0" failures="0">
   <properties>
-    <property name="java.specification.version" value="16"/>
+    <property name="java.specification.version" value="15"/>
     <property name="sun.jnu.encoding" value="UTF-8"/>
-    <property name="java.class.path" value="/Users/Farstad/OneDrive/Skole/Andre_aar/Semester_4/Onion_Routing_Project/target/test-classes:/Users/Farstad/OneDrive/Skole/Andre_aar/Semester_4/Onion_Routing_Project/target/classes:/Users/Farstad/.m2/repository/org/junit/jupiter/junit-jupiter-engine/5.8.2/junit-jupiter-engine-5.8.2.jar:/Users/Farstad/.m2/repository/org/junit/platform/junit-platform-engine/1.8.2/junit-platform-engine-1.8.2.jar:/Users/Farstad/.m2/repository/org/opentest4j/opentest4j/1.2.0/opentest4j-1.2.0.jar:/Users/Farstad/.m2/repository/org/junit/platform/junit-platform-commons/1.8.2/junit-platform-commons-1.8.2.jar:/Users/Farstad/.m2/repository/org/junit/jupiter/junit-jupiter-api/5.8.2/junit-jupiter-api-5.8.2.jar:/Users/Farstad/.m2/repository/org/apiguardian/apiguardian-api/1.1.2/apiguardian-api-1.1.2.jar:/Users/Farstad/.m2/repository/org/junit/jupiter/junit-jupiter/5.8.2/junit-jupiter-5.8.2.jar:/Users/Farstad/.m2/repository/org/junit/jupiter/junit-jupiter-params/5.8.2/junit-jupiter-params-5.8.2.jar:/Users/Farstad/.m2/repository/junit/junit/4.13.2/junit-4.13.2.jar:/Users/Farstad/.m2/repository/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar:"/>
+    <property name="java.class.path" value="/Users/simenklemppetersen/Documents/Vaar2022/Nettverksprogrammering/IDATT2104-Onion_Routing_Project/target/test-classes:/Users/simenklemppetersen/Documents/Vaar2022/Nettverksprogrammering/IDATT2104-Onion_Routing_Project/target/classes:/Users/simenklemppetersen/.m2/repository/org/junit/jupiter/junit-jupiter-engine/5.8.2/junit-jupiter-engine-5.8.2.jar:/Users/simenklemppetersen/.m2/repository/org/junit/platform/junit-platform-engine/1.8.2/junit-platform-engine-1.8.2.jar:/Users/simenklemppetersen/.m2/repository/org/opentest4j/opentest4j/1.2.0/opentest4j-1.2.0.jar:/Users/simenklemppetersen/.m2/repository/org/junit/platform/junit-platform-commons/1.8.2/junit-platform-commons-1.8.2.jar:/Users/simenklemppetersen/.m2/repository/org/junit/jupiter/junit-jupiter-api/5.8.2/junit-jupiter-api-5.8.2.jar:/Users/simenklemppetersen/.m2/repository/org/apiguardian/apiguardian-api/1.1.2/apiguardian-api-1.1.2.jar:/Users/simenklemppetersen/.m2/repository/org/junit/jupiter/junit-jupiter/5.8.2/junit-jupiter-5.8.2.jar:/Users/simenklemppetersen/.m2/repository/org/junit/jupiter/junit-jupiter-params/5.8.2/junit-jupiter-params-5.8.2.jar:/Users/simenklemppetersen/.m2/repository/junit/junit/4.13.2/junit-4.13.2.jar:/Users/simenklemppetersen/.m2/repository/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar:"/>
     <property name="java.vm.vendor" value="Oracle Corporation"/>
     <property name="sun.arch.data.model" value="64"/>
-    <property name="java.vendor.url" value="https://java.oracle.com/"/>
+    <property name="java.vendor.url" value="https://openjdk.java.net/"/>
     <property name="os.name" value="Mac OS X"/>
-    <property name="java.vm.specification.version" value="16"/>
+    <property name="java.vm.specification.version" value="15"/>
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="user.country" value="NO"/>
-    <property name="sun.boot.library.path" value="/Library/Java/JavaVirtualMachines/jdk-16.0.2.jdk/Contents/Home/lib"/>
-    <property name="sun.java.command" value="/Users/Farstad/OneDrive/Skole/Andre_aar/Semester_4/Onion_Routing_Project/target/surefire/surefirebooter159428041011141211.jar /Users/Farstad/OneDrive/Skole/Andre_aar/Semester_4/Onion_Routing_Project/target/surefire 2022-03-25T14-03-26_798-jvmRun1 surefire648342118476272892tmp surefire_012084955099485923033tmp"/>
+    <property name="sun.boot.library.path" value="/usr/local/Cellar/openjdk/15.0.2/libexec/openjdk.jdk/Contents/Home/lib"/>
+    <property name="sun.java.command" value="/Users/simenklemppetersen/Documents/Vaar2022/Nettverksprogrammering/IDATT2104-Onion_Routing_Project/target/surefire/surefirebooter10906298452309464479.jar /Users/simenklemppetersen/Documents/Vaar2022/Nettverksprogrammering/IDATT2104-Onion_Routing_Project/target/surefire 2022-03-27T17-34-26_756-jvmRun1 surefire10351555972130325620tmp surefire_018351724884542405632tmp"/>
     <property name="http.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="jdk.debug" value="release"/>
-    <property name="surefire.test.class.path" value="/Users/Farstad/OneDrive/Skole/Andre_aar/Semester_4/Onion_Routing_Project/target/test-classes:/Users/Farstad/OneDrive/Skole/Andre_aar/Semester_4/Onion_Routing_Project/target/classes:/Users/Farstad/.m2/repository/org/junit/jupiter/junit-jupiter-engine/5.8.2/junit-jupiter-engine-5.8.2.jar:/Users/Farstad/.m2/repository/org/junit/platform/junit-platform-engine/1.8.2/junit-platform-engine-1.8.2.jar:/Users/Farstad/.m2/repository/org/opentest4j/opentest4j/1.2.0/opentest4j-1.2.0.jar:/Users/Farstad/.m2/repository/org/junit/platform/junit-platform-commons/1.8.2/junit-platform-commons-1.8.2.jar:/Users/Farstad/.m2/repository/org/junit/jupiter/junit-jupiter-api/5.8.2/junit-jupiter-api-5.8.2.jar:/Users/Farstad/.m2/repository/org/apiguardian/apiguardian-api/1.1.2/apiguardian-api-1.1.2.jar:/Users/Farstad/.m2/repository/org/junit/jupiter/junit-jupiter/5.8.2/junit-jupiter-5.8.2.jar:/Users/Farstad/.m2/repository/org/junit/jupiter/junit-jupiter-params/5.8.2/junit-jupiter-params-5.8.2.jar:/Users/Farstad/.m2/repository/junit/junit/4.13.2/junit-4.13.2.jar:/Users/Farstad/.m2/repository/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar:"/>
+    <property name="surefire.test.class.path" value="/Users/simenklemppetersen/Documents/Vaar2022/Nettverksprogrammering/IDATT2104-Onion_Routing_Project/target/test-classes:/Users/simenklemppetersen/Documents/Vaar2022/Nettverksprogrammering/IDATT2104-Onion_Routing_Project/target/classes:/Users/simenklemppetersen/.m2/repository/org/junit/jupiter/junit-jupiter-engine/5.8.2/junit-jupiter-engine-5.8.2.jar:/Users/simenklemppetersen/.m2/repository/org/junit/platform/junit-platform-engine/1.8.2/junit-platform-engine-1.8.2.jar:/Users/simenklemppetersen/.m2/repository/org/opentest4j/opentest4j/1.2.0/opentest4j-1.2.0.jar:/Users/simenklemppetersen/.m2/repository/org/junit/platform/junit-platform-commons/1.8.2/junit-platform-commons-1.8.2.jar:/Users/simenklemppetersen/.m2/repository/org/junit/jupiter/junit-jupiter-api/5.8.2/junit-jupiter-api-5.8.2.jar:/Users/simenklemppetersen/.m2/repository/org/apiguardian/apiguardian-api/1.1.2/apiguardian-api-1.1.2.jar:/Users/simenklemppetersen/.m2/repository/org/junit/jupiter/junit-jupiter/5.8.2/junit-jupiter-5.8.2.jar:/Users/simenklemppetersen/.m2/repository/org/junit/jupiter/junit-jupiter-params/5.8.2/junit-jupiter-params-5.8.2.jar:/Users/simenklemppetersen/.m2/repository/junit/junit/4.13.2/junit-4.13.2.jar:/Users/simenklemppetersen/.m2/repository/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar:"/>
     <property name="sun.cpu.endian" value="little"/>
-    <property name="user.home" value="/Users/Farstad"/>
+    <property name="user.home" value="/Users/simenklemppetersen"/>
     <property name="user.language" value="nb"/>
     <property name="java.specification.vendor" value="Oracle Corporation"/>
-    <property name="java.version.date" value="2021-07-20"/>
-    <property name="java.home" value="/Library/Java/JavaVirtualMachines/jdk-16.0.2.jdk/Contents/Home"/>
+    <property name="java.version.date" value="2021-01-19"/>
+    <property name="java.home" value="/usr/local/Cellar/openjdk/15.0.2/libexec/openjdk.jdk/Contents/Home"/>
     <property name="file.separator" value="/"/>
-    <property name="basedir" value="/Users/Farstad/OneDrive/Skole/Andre_aar/Semester_4/Onion_Routing_Project"/>
+    <property name="basedir" value="/Users/simenklemppetersen/Documents/Vaar2022/Nettverksprogrammering/IDATT2104-Onion_Routing_Project"/>
     <property name="java.vm.compressedOopsMode" value="Zero based"/>
     <property name="line.separator" value="&#10;"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
-    <property name="surefire.real.class.path" value="/Users/Farstad/OneDrive/Skole/Andre_aar/Semester_4/Onion_Routing_Project/target/surefire/surefirebooter159428041011141211.jar"/>
+    <property name="surefire.real.class.path" value="/Users/simenklemppetersen/Documents/Vaar2022/Nettverksprogrammering/IDATT2104-Onion_Routing_Project/target/surefire/surefirebooter10906298452309464479.jar"/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
-    <property name="java.runtime.version" value="16.0.2+7-67"/>
-    <property name="user.name" value="Farstad"/>
+    <property name="java.runtime.version" value="15.0.2+7"/>
+    <property name="user.name" value="simenklemppetersen"/>
     <property name="path.separator" value=":"/>
-    <property name="os.version" value="10.15.2"/>
-    <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
+    <property name="os.version" value="10.16"/>
+    <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
     <property name="file.encoding" value="US-ASCII"/>
-    <property name="java.vm.name" value="Java HotSpot(TM) 64-Bit Server VM"/>
-    <property name="localRepository" value="/Users/Farstad/.m2/repository"/>
+    <property name="java.vm.name" value="OpenJDK 64-Bit Server VM"/>
+    <property name="localRepository" value="/Users/simenklemppetersen/.m2/repository"/>
     <property name="java.vendor.url.bug" value="https://bugreport.java.com/bugreport/"/>
-    <property name="java.io.tmpdir" value="/var/folders/d9/xtshm5vx51x901vg4gm3wnjm0000gp/T/"/>
-    <property name="idea.version" value="2021.3.1"/>
-    <property name="java.version" value="16.0.2"/>
-    <property name="user.dir" value="/Users/Farstad/OneDrive/Skole/Andre_aar/Semester_4/Onion_Routing_Project"/>
+    <property name="java.io.tmpdir" value="/var/folders/92/1416zc2n1ndd42jmrdbx970c0000gn/T/"/>
+    <property name="java.version" value="15.0.2"/>
+    <property name="user.dir" value="/Users/simenklemppetersen/Documents/Vaar2022/Nettverksprogrammering/IDATT2104-Onion_Routing_Project"/>
     <property name="os.arch" value="x86_64"/>
     <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
-    <property name="java.library.path" value="/Users/Farstad/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:."/>
+    <property name="java.library.path" value="/Users/simenklemppetersen/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:."/>
     <property name="java.vm.info" value="mixed mode, sharing"/>
-    <property name="java.vendor" value="Oracle Corporation"/>
-    <property name="java.vm.version" value="16.0.2+7-67"/>
+    <property name="java.vendor" value="N/A"/>
+    <property name="java.vm.version" value="15.0.2+7"/>
     <property name="sun.io.unicode.encoding" value="UnicodeBig"/>
     <property name="socksNonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
-    <property name="java.class.version" value="60.0"/>
+    <property name="java.class.version" value="59.0"/>
   </properties>
-  <testcase name="encryptDecryptAESPositive" classname="AESencryptionTest$encryptDecryptAES" time="0.005"/>
-  <testcase name="encryptDecryptAESNegative" classname="AESencryptionTest$encryptDecryptAES" time="0.003">
+  <testcase name="UnsuccessfullyEncryptDecryptAES" classname="AESencryptionTest$EncryptDecryptAES" time="0.006">
     <system-out><![CDATA[Error while decrypting: javax.crypto.BadPaddingException: Given final block not properly padded. Such issues can arise if a bad key is used during decryption.
 ]]></system-out>
   </testcase>
+  <testcase name="successfullyEncryptDecryptAES" classname="AESencryptionTest$EncryptDecryptAES" time="0"/>
 </testsuite>

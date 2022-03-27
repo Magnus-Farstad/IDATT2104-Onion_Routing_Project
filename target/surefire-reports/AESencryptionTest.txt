@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: AESencryptionTest
 -------------------------------------------------------------------------------
-Tests run: 0, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.055 s - in AESencryptionTest
+Tests run: 0, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.017 s - in AESencryptionTest
