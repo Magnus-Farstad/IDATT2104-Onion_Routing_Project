@@ -54,6 +54,24 @@ Oppgaven besto i å utvikle The Onion Router.
 ![Bilde 25 03 2022 klokken 15 22](https://user-images.githubusercontent.com/91839835/160139963-71ccad6c-6558-41af-b3ef-0b7b74164199.jpg)
 
 
+## Funksjonalitet
+
+- Kryptering ved bruk av både AES (symmetrisk) og RSA (asymmetrisk)
+    * AES-nøkler krypteres med RSA public key
+    * Meldinger krypteres med AES-nøkler
+- Kryptert meldingsutveksling mellom klient og noder.
+    * Kryptert melding med AES
+    * Meldingsutveksling med så mange noder man ønsker.
+    * Meldingen blir kryptert i lag, slik at diverse noder kun kan dekryptere det som er ment for dem.
+- Kryptert meldingsutveksling fra klient, gjennom noder til et API
+    * Dette er et eksempel-API, samme prosjekt som serveren, for å illustrere at det er mulig å kommunisere kryptert til et API
+- Kryptert meldingsutveksling fra API til klient
+    * Meldingen API-et vil sende blir kryptert i flere lag med AES hos nodene, og ender opp hos klient
+- Keep-alive connection
+    * Kan holde forbindelsen så lenge man måtte ønske
+
+
+
 ## Videre utvikling 🏗️
 
 Videre utvikling vil bestå av å gjøre løsningen mer dynamisk ved at noder blir laget fortløpende.
