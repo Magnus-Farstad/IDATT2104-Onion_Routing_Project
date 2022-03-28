@@ -64,6 +64,15 @@ Videre utvikling vil bestå av å gjøre løsningen mer dynamisk ved at noder bl
 
 Kort beskrivelse av hver avhengighet. Hva er egentlig våre avhengigheter?
 
+### Maven
+Maven er brukt som rammeverk i dette prosjektet. Prosjektet importerte Maven underveis, blant annet for å gjøre CI/CD og Releases enklere.
+
+### Spring-Boot
+I server-prosjektet er Spring-Boot blitt benyttet. Dette er en server med endepunkter for å motta og sende nøkler, portnummer og adresser.
+
+### JUnit
+JUnit er blitt brukt for å teste kritisk funksjonalitet, som kryptering, dekryptering og generering av nøkler.
+
 
 ## Installasjon
 
