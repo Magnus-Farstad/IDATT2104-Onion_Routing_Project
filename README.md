@@ -84,6 +84,8 @@ Trykk på linkene for å laste ned.
 
 ## Installasjon/Instruksjon 🗃️
 
+Les gjennom alle stegene før bruk!
+
 For å kune kjøre programmet vårt kreves det:
 
 ### Steg 1 - Start Spring-boot server:
@@ -113,7 +115,7 @@ NB! Det er viktig at serveren kjører først, da klienten automatisk kobler seg 
 - Nå er klientens offentlige nøkkel lagret i server slik at fremtidige aktive naboer kan hente ut denne
 
 - Klienten vil nå vente på at noder kobler seg opp på server og deretter hente dem ut. 
-NB! Klienten vil vente i 20 sekunder før den henter ut nøklene. På denne måten kan man velge hvor mange noder som skal være med i systemet. Det kan derfor være en idé å ha kommandoene klare for å kjøre nodene. Rekker man ikke å kjøre en node vil ikke denne gjøre noe.
+NB! Klienten vil vente i 30 sekunder før den henter ut nøklene. På denne måten kan man velge hvor mange noder som skal være med i systemet. Det kan derfor være en idé å ha kommandoene klare for å kjøre nodene. Rekker man ikke å kjøre en node vil ikke denne gjøre noe.
 
 
 
@@ -130,6 +132,7 @@ Om serveren kjører på samme maskin kan 'localhost' brukes som adresse. Hvis se
 - Deretter vil noden sende den krypterte AES-nøkkelen tilbake til serverern, som så vil sende denne tilbake til klienten. Hos klienten vil nøkkelen bli dekryptert.
 
 - Man har også gitt klient tilgang på alle aktive noder sine kryptere nøkler, samt portnummere.
+- For å kjøre flere noder, bruk flere terminalvinduer og skriv inn kommandoen over for hver node man ønkser at skal være med.
 
 
 ### Steg 4 - Handling:
