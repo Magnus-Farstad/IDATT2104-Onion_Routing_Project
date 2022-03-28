@@ -54,7 +54,6 @@ Oppgaven besto i å utvikle The Onion Router.
 ![Bilde 25 03 2022 klokken 15 22](https://user-images.githubusercontent.com/91839835/160139963-71ccad6c-6558-41af-b3ef-0b7b74164199.jpg)
 
 
-
 ## Videre utvikling 🏗️
 
 Videre utvikling vil bestå av å gjøre løsningen mer dynamisk ved at noder blir laget fortløpende.
