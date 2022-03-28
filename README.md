@@ -98,7 +98,7 @@ mvn spring-boot:run
 - Kjør client.Client og send med en Public Key til tilhørende Rest server.
 - For å gjøre dette, naviger til filkatalogen der klient-filen ble lagret. Bruk så kommandoen:
 ```
-java -jar Onion-Routing-client.Client.jar
+java -jar Onion-Routing-Client.jar
 ```
 NB! Det er viktig at serveren kjører først, da klienten automatisk kobler seg til serveren.
 
